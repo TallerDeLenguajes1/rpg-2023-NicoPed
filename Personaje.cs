@@ -1,11 +1,11 @@
-namespace Personaje;
+namespace Personajes;
 enum tipoDePersonaje{
-    demonio,
-    creciente,
-    cazador,
-    hashira
+    demonio = 0,
+    creciente = 1,
+    cazador = 2,
+    hashira = 3
 }
-public class Personajes
+public class Personaje
 {
     private tipoDePersonaje tipo;
     private string? nombre;
@@ -33,7 +33,7 @@ public class Personajes
     public int Defensa { get => defensa; set => defensa = value; }
     public int Salud { get => salud; set => salud = value; }
 
-    public Personajes(){
-
+    public Personaje(){
+        
     }
 }
