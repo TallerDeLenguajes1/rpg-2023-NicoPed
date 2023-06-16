@@ -36,4 +36,8 @@ public class Personaje
     public Personaje(){
         
     }
+    public int SacarEdad(){
+        DateTime Today = DateTime.Today;
+        return(Today.Subtract(fecha_nac).Days / 365);
+    }   
 }
