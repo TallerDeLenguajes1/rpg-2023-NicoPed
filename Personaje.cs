@@ -1,9 +1,9 @@
 namespace Personajes;
 enum tipoDePersonaje{
-    demonio = 0,
-    creciente = 1,
-    cazador = 2,
-    hashira = 3
+    Demonio = 0,
+    Creciente = 1,
+    Cazador = 2,
+    Hashira = 3
 }
 public class Personaje
 {

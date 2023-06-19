@@ -1,21 +1,24 @@
 namespace Personajes;
-
+using System.Text.Json;
 public class PersonajesJson{
-    public int GuardarPersonajes(List<Personaje> listaDePersonajes){
-        string fileName = "personajes.json";
-        if(!Existe(fileName)){
-            File.Create(fileName);
+    public void GuardarPersonajes(List<Personaje> listaDePersonajes, string nombreDelArchivo){
+        if(!Existe(nombreDelArchivo)){
+            File.Create(nombreDelArchivo);
         }
-        string json ;
-        return 1;
+        string json = JsonSerializer.Serialize(listaDePersonajes);
+        File.WriteAllText(nombreDelArchivo,json);
     }
-    public int LeerPersonajes(List<Personaje> listaDePersonajes){
-        
-        return 1;
+    public List<Personaje> LeerPersonajes(string nombreDelArchivo){
+        if (Existe(nombreDelArchivo))
+        {
+            string jsonString = File.ReadAllText(nombreDelArchivo);
+            var personajesDesearilizados = JsonSerializer.Deserialize<List<Personaje>>(jsonString);
+            return personajesDesearilizados;
+        }
+        var Vacio = new List<Personaje>();
+        return Vacio;
     }
     public bool Existe(string rutaDelArchivo){
-        
-        
         if (File.Exists(rutaDelArchivo)){
             var infoDelArchivo = new FileInfo(rutaDelArchivo);
             return (infoDelArchivo.Length > 0); 

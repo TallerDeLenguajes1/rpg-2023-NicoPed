@@ -3,28 +3,28 @@ namespace Personajes;
 public class fabricaDePersonaje{
 private string [ , ] nombresDemonios = {{"Enmu","Luna Inferior Uno"},{"Rokuro","Luna Inferior Dos"},{"Wakuraba","Luna Inferior Tres"},{"Mukago","Luna Inferior Cuatro"},{"Rui","Luna Inferior Tres"}};
 private string [ , ] nombresCrecientes = {{"Gyokko","Luna Superior Cinco"},{"Nakime","Luna Superior Cuatro"},{"Akaza","Luna Superior Tres"},{"Doma","Luna Superior Dos"},{"Kokushibo","Luna Superior Uno"}};
-private string [ , ] nombresHashira = {{"Zenitsu","Respiración del Rayo"},{"Tanjiro","Respiración Solar"},{"Inosuke","Respiración de la Bestia"},{"Kanao","Respiración De La Mariposa"},{"Genya","Come Demonios"}};
-private string [ , ] nombresHashiras = {{"Tomioka","Respiración del Agua"},{"Uzui","Respiración del Sonido"},{"Shinobu","Respiración de la Mariposa"},{"Muichiro","Respiración De La neblina"},{"Mitsuri","Respiración Del Amor"}};
+private string [ , ] nombresCazadores = {{"Zenitsu","Respiración del Rayo"},{"Tanjiro","Respiración Solar"},{"Inosuke","Respiración de la Bestia"},{"Kanao","Respiración De La Mariposa"},{"Genya","Come Demonios"}};
+private string [ , ] nombresHashira = {{"Tomioka","Respiración del Agua"},{"Uzui","Respiración del Sonido"},{"Shinobu","Respiración de la Mariposa"},{"Muichiro","Respiración De La neblina"},{"Mitsuri","Respiración Del Amor"}};
 
     public Personaje crearPersonaje(){
         var nuevoPersonaje = new Personaje();
         var random = new Random();
-        var numeroRandom = random.Next(0,5);
+        var numeroRandom = random.Next(0,4);
         tipoDePersonaje tipoPersonaje;
         tipoPersonaje = (tipoDePersonaje)numeroRandom;
 
         switch (tipoPersonaje)
         {
-            case tipoDePersonaje.demonio:
+            case tipoDePersonaje.Demonio:
                 nuevoPersonaje = crearDemonio();
             break;
-            case tipoDePersonaje.creciente:
+            case tipoDePersonaje.Creciente:
                 nuevoPersonaje = crearCreciente();
             break;
-            case tipoDePersonaje.cazador:
-                nuevoPersonaje =crearCazador();
+            case tipoDePersonaje.Cazador:
+                nuevoPersonaje = crearCazador();
             break;
-            case tipoDePersonaje.hashira:
+            case tipoDePersonaje.Hashira:
                 nuevoPersonaje = crearHashira();
             break;
         }
@@ -37,7 +37,7 @@ private string [ , ] nombresHashiras = {{"Tomioka","Respiración del Agua"},{"Uz
         string stringFecha = random.Next(1,28)+"/"+random.Next(1,12)+"/"+random.Next(1000,2000);
         DateTime fechaDeNacimiento;
         
-        nuevoDemonio.Tipo = tipoDePersonaje.demonio;
+        nuevoDemonio.Tipo = tipoDePersonaje.Demonio;
         nuevoDemonio.Nombre = nombresDemonios[numeroRandom,0];
         nuevoDemonio.Apodo = nombresDemonios[numeroRandom,1];
         if (DateTime.TryParse(stringFecha,out fechaDeNacimiento))
@@ -63,9 +63,9 @@ private string [ , ] nombresHashiras = {{"Tomioka","Respiración del Agua"},{"Uz
         string stringFecha = random.Next(1,28)+"/"+random.Next(1,12)+"/"+random.Next(1980,2010);
         DateTime fechaDeNacimiento;
         
-        nuevoCazador.Tipo = tipoDePersonaje.cazador;
-        nuevoCazador.Nombre = nombresHashira[numeroRandom,0];
-        nuevoCazador.Apodo = nombresHashira[numeroRandom,1];
+        nuevoCazador.Tipo = tipoDePersonaje.Cazador;
+        nuevoCazador.Nombre = nombresCazadores[numeroRandom,0];
+        nuevoCazador.Apodo = nombresCazadores[numeroRandom,1];
         if (DateTime.TryParse(stringFecha,out fechaDeNacimiento))
         {
             nuevoCazador.Fecha_nac = fechaDeNacimiento;
@@ -89,7 +89,7 @@ private string [ , ] nombresHashiras = {{"Tomioka","Respiración del Agua"},{"Uz
         string stringFecha = random.Next(1,28)+"/"+random.Next(1,12)+"/"+random.Next(1980,2010);
         DateTime fechaDeNacimiento;
         
-        nuevoHashira.Tipo = tipoDePersonaje.hashira;
+        nuevoHashira.Tipo = tipoDePersonaje.Hashira;
         nuevoHashira.Nombre = nombresHashira[numeroRandom,0];
         nuevoHashira.Apodo = nombresHashira[numeroRandom,1];
         if (DateTime.TryParse(stringFecha,out fechaDeNacimiento))
@@ -115,7 +115,7 @@ private string [ , ] nombresHashiras = {{"Tomioka","Respiración del Agua"},{"Uz
         string stringFecha = random.Next(1,28)+"/"+random.Next(1,12)+"/"+random.Next(1000,2000);
         DateTime fechaDeNacimiento;
         
-        nuevoCreciente.Tipo = tipoDePersonaje.creciente;
+        nuevoCreciente.Tipo = tipoDePersonaje.Creciente;
         nuevoCreciente.Nombre = nombresDemonios[numeroRandom,0];
         nuevoCreciente.Apodo = nombresDemonios[numeroRandom,1];
         if (DateTime.TryParse(stringFecha,out fechaDeNacimiento))
