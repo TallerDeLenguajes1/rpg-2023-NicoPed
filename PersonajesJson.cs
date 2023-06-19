@@ -3,7 +3,7 @@ using System.Text.Json;
 public class PersonajesJson{
     public void GuardarPersonajes(List<Personaje> listaDePersonajes, string nombreDelArchivo){
         if(!Existe(nombreDelArchivo)){
-            File.Create(nombreDelArchivo);
+            File.Create(nombreDelArchivo).Close();
         }
         string json = JsonSerializer.Serialize(listaDePersonajes);
         File.WriteAllText(nombreDelArchivo,json);

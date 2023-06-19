@@ -5,12 +5,11 @@ internal class Program
     private static void Main(string[] args)
     {
         const int CANTIDAD_DE_PERSONAJES = 10;
-        string archivo = "personajes.json";
-        var nuevoPersonajesJson = new PersonajesJson();
-
-        if (!nuevoPersonajesJson.Existe(archivo))
+        string archivoJson = "personajes.json";
+        var AyudaJson = new PersonajesJson();
+        var listaDePersonajes = new List<Personaje>();
+        if (!AyudaJson.Existe(archivoJson))
         {
-            var listaDePersonajes = new List<Personaje>();
             var nuevaFabrica = new fabricaDePersonaje();
             for (int i = 0; i < CANTIDAD_DE_PERSONAJES; i++)
             {
@@ -18,9 +17,16 @@ internal class Program
                 nuevoPersonaje = nuevaFabrica.crearPersonaje();
                 listaDePersonajes.Add(nuevoPersonaje);
             }
-            mostrarLista(listaDePersonajes);
+            AyudaJson.GuardarPersonajes(listaDePersonajes,archivoJson);
         }
+        else
+        {
+            listaDePersonajes =AyudaJson.LeerPersonajes(archivoJson);
+        }    
+            mostrarLista(listaDePersonajes);
+
     }
+
     private static void mostrarLista(List<Personaje> listaDePersonajes){
         foreach (var personaje in listaDePersonajes)
         {
