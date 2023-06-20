@@ -4,7 +4,7 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        const int CANTIDAD_DE_PERSONAJES = 10;
+        const int CANTIDAD_DE_PERSONAJES = 8;
         string archivoJson = "personajes.json";
         var AyudaJson = new PersonajesJson();
         var listaDePersonajes = new List<Personaje>();
@@ -35,13 +35,25 @@ internal class Program
         listaDePersonajes.Remove(perdedor);
     }
     private static Personaje Juego(List<Personaje> listaDePersonajes){
-        do
+        var listaGanadores = new List<Personaje>();
+        var ganador = new Personaje();
+        while (listaDePersonajes.Count > 1)
         {
-            for (int i = 0; i < listaDePersonajes.Count; i++)
+            for (int i = 0; i < listaDePersonajes.Count; i+=2)
             {
-                
+                if (i == 0) // despues se cambiara por si es personaje Principal
+                {
+                    ganador = combateJugador(listaDePersonajes[i],listaDePersonajes[i+1]);
+                }else
+                {
+                    ganador = combateSimulado(listaDePersonajes[i],listaDePersonajes[i+1]);
+                }
+                listaGanadores.Add(ganador);
             }
-        } while (listaDePersonajes.Count > 1);
+            listaDePersonajes = listaGanadores;
+            listaGanadores.Clear();
+        }
+        return listaDePersonajes[0]; 
     }
     private static void mostrarLista(List<Personaje> listaDePersonajes){
         foreach (var personaje in listaDePersonajes)
@@ -70,7 +82,7 @@ internal class Program
         int moneda;
         int auxSaludLuch1 = luchador1.Salud;
         int auxSaludLuch2 = luchador2.Salud;
-        var random = new Random();
+        var random = new Random(DateTime.Now.Millisecond);
         while (luchador1.Salud >0 && luchador2.Salud >0)
         {
             Console.WriteLine("============================");
@@ -105,7 +117,7 @@ internal class Program
 
     }
     private static int calcularGolpe(Personaje luchador, int fuerzaExtra){
-        var random = new Random();
+        var random = new Random(DateTime.Now.Millisecond);
         int danioProvocado = 0;
         int Ataque = luchador.Destreza * (luchador.Fuerza + fuerzaExtra) * luchador.Nivel;
         int Efectividad = random.Next(0,101);
@@ -168,7 +180,7 @@ internal class Program
         return PersonajePrincipal;
     }
     private static int elMasCercano(){
-        var random = new Random();
+        var random = new Random(DateTime.Now.Millisecond);
         int numeroContrincante;
         int numeroDelMago;
         int numeroIngresado;

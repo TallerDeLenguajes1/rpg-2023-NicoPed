@@ -8,7 +8,7 @@ private string [ , ] nombresHashira = {{"Tomioka","Respiración del Agua"},{"Uzu
 
     public Personaje crearPersonaje(){
         var nuevoPersonaje = new Personaje();
-        var random = new Random();
+        var random = new Random(DateTime.Now.Millisecond);
         var numeroRandom = random.Next(0,4);
         tipoDePersonaje tipoPersonaje;
         tipoPersonaje = (tipoDePersonaje)numeroRandom;
@@ -32,7 +32,7 @@ private string [ , ] nombresHashira = {{"Tomioka","Respiración del Agua"},{"Uzu
     }
     private Personaje crearDemonio(){
         var nuevoDemonio = new Personaje();
-        var random = new Random();
+        var random = new Random(DateTime.Now.Millisecond);
         var numeroRandom = random.Next(0,5);
         string stringFecha = random.Next(1,28)+"/"+random.Next(1,12)+"/"+random.Next(1000,2000);
         DateTime fechaDeNacimiento;
@@ -58,7 +58,7 @@ private string [ , ] nombresHashira = {{"Tomioka","Respiración del Agua"},{"Uzu
     }
     private Personaje crearCazador(){
         var nuevoCazador = new Personaje();
-        var random = new Random();
+        var random = new Random(DateTime.Now.Millisecond);
         var numeroRandom = random.Next(0,5);
         string stringFecha = random.Next(1,28)+"/"+random.Next(1,12)+"/"+random.Next(1980,2010);
         DateTime fechaDeNacimiento;
@@ -84,7 +84,7 @@ private string [ , ] nombresHashira = {{"Tomioka","Respiración del Agua"},{"Uzu
     }
     private Personaje crearHashira(){
         var nuevoHashira = new Personaje();
-        var random = new Random();
+        var random = new Random(DateTime.Now.Millisecond);
         var numeroRandom = random.Next(0,5);
         string stringFecha = random.Next(1,28)+"/"+random.Next(1,12)+"/"+random.Next(1980,2010);
         DateTime fechaDeNacimiento;
@@ -110,7 +110,7 @@ private string [ , ] nombresHashira = {{"Tomioka","Respiración del Agua"},{"Uzu
     }
         private Personaje crearCreciente(){
         var nuevoCreciente = new Personaje();
-        var random = new Random();
+        var random = new Random(DateTime.Now.Millisecond);
         var numeroRandom = random.Next(0,5);
         string stringFecha = random.Next(1,28)+"/"+random.Next(1,12)+"/"+random.Next(1000,2000);
         DateTime fechaDeNacimiento;
