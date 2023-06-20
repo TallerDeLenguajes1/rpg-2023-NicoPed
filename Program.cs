@@ -4,7 +4,7 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        const int CANTIDAD_DE_PERSONAJES = 8;
+        const int CANTIDAD_DE_PERSONAJES = 4;
         string archivoJson = "personajes.json";
         var AyudaJson = new PersonajesJson();
         var listaDePersonajes = new List<Personaje>();
@@ -25,6 +25,7 @@ internal class Program
         }
         if (listaDePersonajes.Count > 0)
         {
+            mostrarLista(listaDePersonajes);
             var ganador = new Personaje();
             ganador = Juego(listaDePersonajes);
             Console.WriteLine("=================================================");
@@ -60,17 +61,24 @@ internal class Program
     private static Personaje Juego(List<Personaje> listaDePersonajes){
         var listaGanadores = new List<Personaje>();
         var ganador = new Personaje();
+        var random = new Random(DateTime.Now.Microsecond);
         while (listaDePersonajes.Count > 1)
         {
             for (int i = 0; i < listaDePersonajes.Count; i+=2)
             {
                 Console.WriteLine($"\n{listaDePersonajes[i].Nombre} VS {listaDePersonajes[i+1].Nombre}");
-                if (i == 0) // despues se cambiara por si es personaje Principal
+                if (i == 999) // despues se cambiara por si es personaje Principal
                 {
                     ganador = combateJugador(listaDePersonajes[i],listaDePersonajes[i+1]);
+                    //debo pedirle al usuario que beneficio quiere tener, debo preguntar si es que el que gano es el PerPrin
+                    //Pero eso es tarea para otro momento
+                    // ganador = recibirBeneficio(ganador,opcion);
                 }else
                 {
                     ganador = combateSimulado(listaDePersonajes[i],listaDePersonajes[i+1]);
+                    //doy las mejoras
+                    ganador = recibirBeneficio(ganador,random.Next(1,6));
+
                 }
                 Console.WriteLine ("Ganador: "+ganador.Nombre);
                 listaGanadores.Add(ganador);
@@ -276,6 +284,7 @@ internal class Program
         }
         return Vencedor;
     }
+
 }// juego (secuencia simulada , secuencia jugador)
 // for coutn paso i+=2 p1 = i p2 = i+1
 // devolver los ganadores, crear una nueva lista llamada lista de ganadores, i
