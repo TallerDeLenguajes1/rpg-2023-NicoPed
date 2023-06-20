@@ -34,7 +34,15 @@ internal class Program
         Console.WriteLine("============================");
         listaDePersonajes.Remove(perdedor);
     }
-
+    private static Personaje Juego(List<Personaje> listaDePersonajes){
+        do
+        {
+            for (int i = 0; i < listaDePersonajes.Count; i++)
+            {
+                
+            }
+        } while (listaDePersonajes.Count > 1);
+    }
     private static void mostrarLista(List<Personaje> listaDePersonajes){
         foreach (var personaje in listaDePersonajes)
         {
@@ -60,6 +68,8 @@ internal class Program
         int golpeP1;
         int golpeP2;
         int moneda;
+        int auxSaludLuch1 = luchador1.Salud;
+        int auxSaludLuch2 = luchador2.Salud;
         var random = new Random();
         while (luchador1.Salud >0 && luchador2.Salud >0)
         {
@@ -84,13 +94,13 @@ internal class Program
             }
         }
         if (luchador1.Salud <= 0 ){
-            luchador2.Salud = 100;
-            return luchador1;
+            luchador2.Salud = auxSaludLuch2;
+            return luchador2;
         }
         else
         {
-            luchador1.Salud = 100;
-            return luchador2;
+            luchador1.Salud = auxSaludLuch1;
+            return luchador1;
         }
 
     }
@@ -105,6 +115,8 @@ internal class Program
         return danioProvocado;
     }
     private static Personaje combateJugador(Personaje PersonajePrincipal, Personaje Contrincante){
+        int auxSaludPersPrinc = PersonajePrincipal.Salud;
+        int auxSaludContricante = Contrincante.Salud;
         while (PersonajePrincipal.Salud >0 && Contrincante.Salud >0)
         {
         int golpePersonajePrincipal;
@@ -143,11 +155,13 @@ internal class Program
             }
         }
         if (PersonajePrincipal.Salud <= 0 ){
-            return PersonajePrincipal;
+            Contrincante.Salud = auxSaludContricante;
+            return Contrincante;
         }
         else
         {
-            return Contrincante;
+            PersonajePrincipal.Salud = auxSaludPersPrinc;
+            return PersonajePrincipal;
         }
 
         }
@@ -226,3 +240,10 @@ internal class Program
     }
 }// juego (secuencia simulada , secuencia jugador)
 // for coutn paso i+=2 p1 = i p2 = i+1
+// devolver los ganadores, crear una nueva lista llamada lista de ganadores, i
+//igualar la lista de personajes a esta(de esta forma se eliminarian los otros)
+//así hasta que tenga uno solo
+//debo cambiar los combates para que me den los ganadores en vez de los perdedores
+//debo ver una forma de mostrar los combates haciendo como 4tos semis etc
+// la funcion juego me retornara el ganador de todos
+// mostrar sus datos y la leyenda de ganador
