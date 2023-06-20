@@ -22,17 +22,40 @@ internal class Program
         else
         {
             listaDePersonajes =AyudaJson.LeerPersonajes(archivoJson);
-        }    
+        }
+        if (listaDePersonajes.Count > 0)
+        {
+            var ganador = new Personaje();
+            ganador = Juego(listaDePersonajes);
+            Console.WriteLine("=================================================");
+            Console.WriteLine("EL CAMINO FUE ARDUO, DESPUÉS DE ARDUAS BATALLAS");
+            Console.WriteLine("FINALMENTE TENEMOS UN GANADOR Y ES: ");  
+            Console.WriteLine("||||||||||||||"+ganador.Nombre+"||||||||||||||");  
+            Console.WriteLine("HAS LOGRADO LA GLORIA ETERNA OH GRAN LUCHADOR");
+            Console.WriteLine("AHORA REGOCIJATE CAMPEÓN DE CAMPEONES");  
+            Console.WriteLine("AQUÍ VAN TUS STATS");  
+            Console.WriteLine("=================================================");  
+            mostrarDatos(ganador);
+            Console.WriteLine("================================================="); 
+            // if (ganador == personajePrincipal)
+            // {
+            //     Console.WriteLine("Y FELICIDADES A TI PERSONA REAL QUE MANEJA");
+            //     Console.WriteLine("A ESTE PERSONAJE, TU TAMBIEN TIENES GLORIA");
+            //     Console.WriteLine("GRACIAS POR JUGAR CON NICOPcompany");
+            // } 
+            Console.WriteLine("=================================================");  
+        }
+
         // mostrarLista(listaDePersonajes);
-        Personaje perdedor;
-        perdedor = combateJugador(listaDePersonajes[1],listaDePersonajes[1]);
-        Console.WriteLine("============================");
-        Console.WriteLine("============================");
-        Console.WriteLine("Perdedor: ");
-        mostrarDatos(perdedor);
-        Console.WriteLine("============================");
-        Console.WriteLine("============================");
-        listaDePersonajes.Remove(perdedor);
+        // Personaje perdedor;
+        // perdedor = combateJugador(listaDePersonajes[1],listaDePersonajes[1]);
+        // Console.WriteLine("============================");
+        // Console.WriteLine("============================");
+        // Console.WriteLine("Perdedor: ");
+        // mostrarDatos(perdedor);
+        // Console.WriteLine("============================");
+        // Console.WriteLine("============================");
+        // listaDePersonajes.Remove(perdedor);
     }
     private static Personaje Juego(List<Personaje> listaDePersonajes){
         var listaGanadores = new List<Personaje>();
@@ -41,6 +64,7 @@ internal class Program
         {
             for (int i = 0; i < listaDePersonajes.Count; i+=2)
             {
+                Console.WriteLine($"\n{listaDePersonajes[i].Nombre} VS {listaDePersonajes[i+1].Nombre}");
                 if (i == 0) // despues se cambiara por si es personaje Principal
                 {
                     ganador = combateJugador(listaDePersonajes[i],listaDePersonajes[i+1]);
@@ -48,9 +72,11 @@ internal class Program
                 {
                     ganador = combateSimulado(listaDePersonajes[i],listaDePersonajes[i+1]);
                 }
+                Console.WriteLine ("Ganador: "+ganador.Nombre);
                 listaGanadores.Add(ganador);
             }
-            listaDePersonajes = listaGanadores;
+            listaDePersonajes.Clear();
+            listaDePersonajes.AddRange(listaGanadores);
             listaGanadores.Clear();
         }
         return listaDePersonajes[0]; 
@@ -85,10 +111,10 @@ internal class Program
         var random = new Random(DateTime.Now.Millisecond);
         while (luchador1.Salud >0 && luchador2.Salud >0)
         {
-            Console.WriteLine("============================");
-            Console.WriteLine("Salud P1:" + luchador1.Salud);
-            Console.WriteLine("Salud P2:" + luchador2.Salud);
-            Console.WriteLine("============================");
+            // Console.WriteLine("============================");
+            // Console.WriteLine("Salud P1:" + luchador1.Salud);
+            // Console.WriteLine("Salud P2:" + luchador2.Salud);
+            // Console.WriteLine("============================");
             moneda = random.Next(1,3);
             if (moneda == 1)
             {
