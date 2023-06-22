@@ -4,10 +4,16 @@ internal class Program
 {
     private static void Main(string[] args)
     {
+        var mensaje = new Mensajes();
         const int CANTIDAD_DE_PERSONAJES = 8;
         string archivoJson = "personajes.json";
+        int opcionFinal = 0;
+        string? buffer;
         var AyudaJson = new PersonajesJson();
         var listaDePersonajes = new List<Personaje>();
+    do
+    {
+            
         if (!AyudaJson.Existe(archivoJson))
         {
             var nuevaFabrica = new fabricaDePersonaje();
@@ -23,75 +29,49 @@ internal class Program
         {
             listaDePersonajes =AyudaJson.LeerPersonajes(archivoJson);
         }
-        var random = new Random(DateTime.Now.Microsecond);
-        var Mensajes = new Mensajes();
-        int num1 = random.Next(0,8);
-        int num2 = random.Next(0,8);
-        int num3 = random.Next(0,8);
-        Mensajes.VS(listaDePersonajes[num1],listaDePersonajes[num2]);
-        var ganador = new Personaje();
-        ganador = combateSimulado(listaDePersonajes[num1],listaDePersonajes[num2]);
-        Mensajes.ganador(ganador);
-        Mensajes.suerte(num1,num2,num3);
-        Mensajes.tuPierdes();
-        Mensajes.reglasDelMinijuegoSuerte();
-        Mensajes.malIngresoEnSuerte();
-        Mensajes.mostrarSalud(listaDePersonajes[num1],listaDePersonajes[num2]);
-        Mensajes.mostrarDatos(listaDePersonajes[num1]);
-        Mensajes.gameOver();
-        // Mensajes.presionaEnter();
-        Mensajes.mensajeFinal(listaDePersonajes[num3]);
-        Mensajes.finalUsuarioGanador();
-       /* if (listaDePersonajes.Count > 0)
+
+        if (listaDePersonajes.Count > 0)
         {
-            mostrarLista(listaDePersonajes);
+            // mensaje.mostrarLista(listaDePersonajes);
             var ganador = new Personaje();
             ganador = Juego(listaDePersonajes);
-            Console.WriteLine("=================================================");
-            Console.WriteLine("EL CAMINO FUE ARDUO, DESPUÉS DE ARDUAS BATALLAS");
-            Console.WriteLine("FINALMENTE TENEMOS UN GANADOR Y ES: ");  
-            Console.WriteLine("||||||||||||||"+ganador.Nombre+"||||||||||||||");  
-            Console.WriteLine("HAS LOGRADO LA GLORIA ETERNA OH GRAN LUCHADOR");
-            Console.WriteLine("AHORA REGOCIJATE CAMPEÓN DE CAMPEONES");  
-            Console.WriteLine("AQUÍ VAN TUS STATS");  
-            Console.WriteLine("=================================================");  
-            mostrarDatos(ganador);
-            Console.WriteLine("================================================="); 
+            mensaje.mensajeFinal(ganador);
+
             // if (ganador == personajePrincipal)
             // {
-            //     Console.WriteLine("Y FELICIDADES A TI PERSONA REAL QUE MANEJA");
-            //     Console.WriteLine("A ESTE PERSONAJE, TU TAMBIEN TIENES GLORIA");
-            //     Console.WriteLine("GRACIAS POR JUGAR CON NICOPcompany");
+                // mensaje.finalUsuarioGanador()
             // } 
-            Console.WriteLine("=================================================");  
+            mensaje.gameOver();
         }
-/*/
-        // mostrarLista(listaDePersonajes);
-        // Personaje perdedor;
-        // perdedor = combateJugador(listaDePersonajes[1],listaDePersonajes[1]);
-        // Console.WriteLine("============================");
-        // Console.WriteLine("============================");
-        // Console.WriteLine("Perdedor: ");
-        // mostrarDatos(perdedor);
-        // Console.WriteLine("============================");
-        // Console.WriteLine("============================");
-        // listaDePersonajes.Remove(perdedor);
+
+        buffer = Console.ReadLine();
+        if (! int.TryParse(buffer,out opcionFinal) || opcionFinal != 1)
+        {
+            opcionFinal = 0;
+        }
+    } while (opcionFinal != 0);
+    
     }
     private static Personaje Juego(List<Personaje> listaDePersonajes){
         var listaGanadores = new List<Personaje>();
         var ganador = new Personaje();
         var random = new Random(DateTime.Now.Microsecond);
+        var mensaje = new Mensajes();
         while (listaDePersonajes.Count > 1)
         {
             for (int i = 0; i < listaDePersonajes.Count; i+=2)
             {
-                Console.WriteLine($"\n{listaDePersonajes[i].Nombre} VS {listaDePersonajes[i+1].Nombre}");
-                if (i == 999) // despues se cambiara por si es personaje Principal
+                mensaje.VS(listaDePersonajes[i],listaDePersonajes[i+1]);
+                // Console.WriteLine($"\n{listaDePersonajes[i].Nombre} VS {listaDePersonajes[i+1].Nombre}");
+                if (i == 0) // despues se cambiara por si es personaje Principal
                 {
+                    mensaje.reglasDelMinijuegoSuerte();
                     ganador = combateJugador(listaDePersonajes[i],listaDePersonajes[i+1]);
                     //debo pedirle al usuario que beneficio quiere tener, debo preguntar si es que el que gano es el PerPrin
                     //Pero eso es tarea para otro momento
                     // ganador = recibirBeneficio(ganador,opcion);
+                    ganador = recibirBeneficio(ganador,random.Next(1,6)); // por el momento
+
                 }else
                 {
                     ganador = combateSimulado(listaDePersonajes[i],listaDePersonajes[i+1]);
@@ -99,7 +79,9 @@ internal class Program
                     ganador = recibirBeneficio(ganador,random.Next(1,6));
 
                 }
-                Console.WriteLine ("Ganador: "+ganador.Nombre);
+                mensaje.ganador(ganador);
+                // Console.WriteLine ("Ganador: "+ganador.Nombre);
+                mensaje.presionaEnter();
                 listaGanadores.Add(ganador);
             }
             listaDePersonajes.Clear();
@@ -108,27 +90,6 @@ internal class Program
         }
         return listaDePersonajes[0]; 
     }
-    private static void mostrarLista(List<Personaje> listaDePersonajes){
-        foreach (var personaje in listaDePersonajes)
-        {
-            mostrarDatos(personaje);
-            Console.WriteLine("------------------");
-        }
-    }
-    private static void mostrarDatos(Personaje personaje){
-        Console.WriteLine("Nombre: "+personaje.Nombre);
-        Console.WriteLine("Apodo: "+personaje.Apodo);
-        Console.WriteLine("Tipo: "+personaje.Tipo);
-        Console.WriteLine("Fecha_nac: "+personaje.Fecha_nac.ToShortDateString());
-        Console.WriteLine("Edad: "+personaje.Edad);
-        Console.WriteLine("Velocidad: "+personaje.Velocidad);
-        Console.WriteLine("Destreza: "+personaje.Destreza);
-        Console.WriteLine("Fuerza: "+personaje.Fuerza);
-        Console.WriteLine("Nivel: "+personaje.Nivel);
-        Console.WriteLine("Defensa: "+personaje.Defensa);
-        Console.WriteLine("Salud: "+personaje.Salud);
-    }
-
     private static Personaje combateSimulado(Personaje luchador1, Personaje luchador2){
         int golpeP1;
         int golpeP2;
@@ -182,44 +143,50 @@ internal class Program
     private static Personaje combateJugador(Personaje PersonajePrincipal, Personaje Contrincante){
         int auxSaludPersPrinc = PersonajePrincipal.Salud;
         int auxSaludContricante = Contrincante.Salud;
-        var Mensaje = new Mensajes();
-
-        while (PersonajePrincipal.Salud >0 && Contrincante.Salud >0)
-        {
-        int golpePersonajePrincipal;
-        int golpeContrincante;
+        var mensaje = new Mensajes();
+        int golpePersonajePrincipal = 0;
+        int golpeContrincante = 0;
         int Resultado;
+  
         while (PersonajePrincipal.Salud >0 && Contrincante.Salud >0)
         {
-            Console.WriteLine("============================");
-            Console.WriteLine("Tu salud:" + PersonajePrincipal.Salud);
-            Console.WriteLine("Contrincante:" + Contrincante.Salud);
-            Console.WriteLine("============================");
+            golpePersonajePrincipal = 0;
+            golpeContrincante = 0;
+            // Console.WriteLine("============================");
+            // Console.WriteLine("Tu salud:" + PersonajePrincipal.Salud);
+            // Console.WriteLine("Contrincante:" + Contrincante.Salud);
+            // Console.WriteLine("============================");
+            mensaje.mostrarSalud(PersonajePrincipal,Contrincante);
             Resultado = elMasCercano();
             if (Resultado == 3)
             {
-                Console.WriteLine("===Empate!!==");
+                // Console.WriteLine("===Empate!!==");
+                mensaje.Empate();
                 golpePersonajePrincipal = calcularGolpe(PersonajePrincipal,0);
                 golpeContrincante = calcularGolpe(Contrincante,0); 
             }else
             {    
                 if (Resultado == 1)
                 {
-                    Console.WriteLine("==Tu ganas==");
+                    // Console.WriteLine("==Tu ganas==");
+                    mensaje.tuGanas();
                     golpePersonajePrincipal = calcularGolpe(PersonajePrincipal,10);
                     golpeContrincante = calcularGolpe(Contrincante,0);
                 }else
                 {
-                    Console.WriteLine("==Pierdes==");
+                    // Console.WriteLine("==Pierdes==");
+                    mensaje.tuPierdes();
                     golpePersonajePrincipal = calcularGolpe(PersonajePrincipal,0);
                     golpeContrincante = calcularGolpe(Contrincante,10);              
                 }
             }
+            mensaje.presionaEnter();
             Contrincante.Salud -= golpePersonajePrincipal;
             if (Contrincante.Salud > 0)
             {
                 PersonajePrincipal.Salud -= golpeContrincante;
             }
+            mensaje.mostrarDanio(golpePersonajePrincipal,golpeContrincante);
         }
         if (PersonajePrincipal.Salud <= 0 ){
             Contrincante.Salud = auxSaludContricante;
@@ -230,9 +197,6 @@ internal class Program
             PersonajePrincipal.Salud = auxSaludPersPrinc;
             return PersonajePrincipal;
         }
-
-        }
-        return PersonajePrincipal;
     }
     private static int elMasCercano(){
         var random = new Random(DateTime.Now.Millisecond);
@@ -240,18 +204,22 @@ internal class Program
         int numeroDelMago;
         int numeroIngresado;
         string? buffer;
+        var mensaje = new Mensajes();
+
         Console.Write("Ingresa » ");
         buffer = Console.ReadLine();
         while ( !(int.TryParse(buffer, out numeroIngresado)) || (numeroIngresado < 0 || numeroIngresado > 9) )
         {
-            Console.WriteLine("================================");
-            Console.WriteLine("Creo que no me has entendido bien");
-            Console.WriteLine("== Ingrese un número del 0 al 9 ==");
-            Console.Write("Intentelo de vuelta: ");
+            // Console.WriteLine("================================");
+            // Console.WriteLine("Creo que no me has entendido bien");
+            // Console.WriteLine("== Ingrese un número del 0 al 9 ==");
+            // Console.Write("Intentelo de vuelta: ");
+            mensaje.malIngresoEnSuerte();
             buffer = Console.ReadLine();
         }
         numeroContrincante = random.Next(0,10);
         numeroDelMago = random.Next(0,10);
+        mensaje.suerte(numeroIngresado,numeroDelMago,numeroContrincante);
         if (distanciaEntreNumeros(numeroDelMago, numeroContrincante) ==  distanciaEntreNumeros(numeroDelMago,numeroIngresado))
         {
             return 3;           
@@ -259,10 +227,10 @@ internal class Program
         {
             if (distanciaEntreNumeros(numeroDelMago, numeroContrincante) <  distanciaEntreNumeros(numeroDelMago,numeroIngresado))
             {
-                return 1;
+                return 2;
             }else
             {
-                return 2;
+                return 1;
             }
         }
     }

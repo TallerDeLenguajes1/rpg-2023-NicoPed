@@ -49,6 +49,7 @@ public class Mensajes{
         Console.WriteLine("║ de fuerza momentanea                « ║");
         Console.WriteLine("║ »Muchas suerte... La necesitaras    « ║");
         Console.WriteLine("╚═══════════════════════════════════════╝");
+        presionaEnter();
     }
     public void malIngresoEnSuerte(){
         Console.WriteLine("╔═══════════════════════════════════════╗");
@@ -64,6 +65,16 @@ public class Mensajes{
         Console.WriteLine (@"║                               ║");
         Console.WriteLine (@$"║ Tu salud: {luchador1.Salud.ToString().PadRight(19)} ║");
         Console.WriteLine (@$"║ Salud del Contricante: {luchador2.Salud.ToString().PadRight(6)} ║");
+        Console.WriteLine (@"║                               ║");
+        Console.WriteLine (@"╚═══════════════════════════════╝");
+
+        }
+        public void mostrarDanio(int danioProvocado, int danioRecibido){
+        Console.WriteLine("");
+        Console.WriteLine (@"╔═══════════════════════════════╗");
+        Console.WriteLine (@"║                               ║");
+        Console.WriteLine (@$"║ Daño Provocado: {danioProvocado.ToString().PadRight(13)} ║");
+        Console.WriteLine (@$"║ Recibiste daño: {danioRecibido.ToString().PadRight(13)} ║");
         Console.WriteLine (@"║                               ║");
         Console.WriteLine (@"╚═══════════════════════════════╝");
 
@@ -109,6 +120,7 @@ public class Mensajes{
     Console.WriteLine("░░██░░░░░░██░░░░██░░██░░░░██░░░░░░░░░░██░░░░░██░░░");
     Console.WriteLine("░░░████████░░░░░░░██░░░░░░░█████████░░██░░░░░░██░░");
     Console.WriteLine(" ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
+    Console.WriteLine("");
     Console.WriteLine("»»» Wanna Play Again? »»» 1:yes 0: No");
     }
     
@@ -121,19 +133,22 @@ public class Mensajes{
         Console.WriteLine("╔────────────────────────────────────────────────╗");
         Console.WriteLine("│EL CAMINO FUE ARDUO Y DESPUÉS DE ARDUAS BATALLAS│");
         Console.WriteLine("│      FINALMENTE TENEMOS UN GANADOR Y ES:       │");  
-        Console.WriteLine("╚────────────────────────────────────────────────╝");  
+        Console.WriteLine("╚────────────────────────────────────────────────╝");
+        presionaEnter();  
         Console.WriteLine(empty.PadRight(22)+"WINNER");
         Console.WriteLine("╔════════════════════════════════════════════════╗");
         Console.WriteLine("│"+empty.PadRight(22)+""+ganador.Nombre.PadRight(26)+"│");
         Console.WriteLine("│"+empty.PadRight(11)+""+ganador.Apodo.PadLeft(24).PadRight(37)+"│");  
         Console.WriteLine("╚════════════════════════════════════════════════╝");       
+        presionaEnter();
         Console.WriteLine("╔────────────────────────────────────────────────╗");
         Console.WriteLine("│ HAS LOGRADO LA GLORIA ETERNA OH GRAN LUCHADOR! │");
         Console.WriteLine("│     AHORA REGOCIJATE CAMPEÓN DE CAMPEONES      │");  
         Console.WriteLine("├────────────────────────────────────────────────┤");  
         Console.WriteLine("╚────────────────────────────────────────────────╝");  
-        Console.WriteLine(" ══════════════ AQUÍ VAN TUS STATS ══════════════");  
+        Console.WriteLine(" ══════════════ Y AQUÍ SUS STATS ══════════════");  
         mostrarDatos(ganador);
+        presionaEnter();
     }
     public void finalUsuarioGanador(){
         Console.WriteLine("╔────────────────────────────────────────────────╗");
