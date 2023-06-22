@@ -4,7 +4,7 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        const int CANTIDAD_DE_PERSONAJES = 4;
+        const int CANTIDAD_DE_PERSONAJES = 8;
         string archivoJson = "personajes.json";
         var AyudaJson = new PersonajesJson();
         var listaDePersonajes = new List<Personaje>();
@@ -23,7 +23,22 @@ internal class Program
         {
             listaDePersonajes =AyudaJson.LeerPersonajes(archivoJson);
         }
-        if (listaDePersonajes.Count > 0)
+        var random = new Random(DateTime.Now.Microsecond);
+        var Mensajes = new Mensajes();
+        int num1 = random.Next(0,8);
+        int num2 = random.Next(0,8);
+        int num3 = random.Next(0,8);
+        Mensajes.VS(listaDePersonajes[num1],listaDePersonajes[num2]);
+        var ganador = new Personaje();
+        ganador = combateSimulado(listaDePersonajes[num1],listaDePersonajes[num2]);
+        Mensajes.ganador(ganador);
+        Mensajes.suerte(num1,num2,num3);
+        Mensajes.tuPierdes();
+        Mensajes.reglasDelMinijuegoSuerte();
+        Mensajes.malIngresoEnSuerte();
+        Mensajes.mostrarSalud(listaDePersonajes[num1],listaDePersonajes[num2]);
+
+       /* if (listaDePersonajes.Count > 0)
         {
             mostrarLista(listaDePersonajes);
             var ganador = new Personaje();
@@ -46,7 +61,7 @@ internal class Program
             // } 
             Console.WriteLine("=================================================");  
         }
-
+/*/
         // mostrarLista(listaDePersonajes);
         // Personaje perdedor;
         // perdedor = combateJugador(listaDePersonajes[1],listaDePersonajes[1]);
@@ -163,6 +178,8 @@ internal class Program
     private static Personaje combateJugador(Personaje PersonajePrincipal, Personaje Contrincante){
         int auxSaludPersPrinc = PersonajePrincipal.Salud;
         int auxSaludContricante = Contrincante.Salud;
+        var Mensaje = new Mensajes();
+
         while (PersonajePrincipal.Salud >0 && Contrincante.Salud >0)
         {
         int golpePersonajePrincipal;
@@ -219,22 +236,18 @@ internal class Program
         int numeroDelMago;
         int numeroIngresado;
         string? buffer;
-        Console.WriteLine("== Ingrese un número del 1 al 10 ==");
-        Console.WriteLine("El que se acerca más al número pensado por el mago");
-        Console.WriteLine("Recibira +10 de fuerza momentaneamente");
-        Console.WriteLine("Ahora. ESCRIBE!!");
-        Console.Write("Ingresa: ");
+        Console.Write("Ingresa » ");
         buffer = Console.ReadLine();
-        while ( !(int.TryParse(buffer, out numeroIngresado)) || (numeroIngresado < 1 || numeroIngresado > 10) )
+        while ( !(int.TryParse(buffer, out numeroIngresado)) || (numeroIngresado < 0 || numeroIngresado > 9) )
         {
             Console.WriteLine("================================");
             Console.WriteLine("Creo que no me has entendido bien");
-            Console.WriteLine("== Ingrese un número del 1 al 10 ==");
+            Console.WriteLine("== Ingrese un número del 0 al 9 ==");
             Console.Write("Intentelo de vuelta: ");
             buffer = Console.ReadLine();
         }
-        numeroContrincante = random.Next(1,11);
-        numeroDelMago = random.Next(1,11);
+        numeroContrincante = random.Next(0,10);
+        numeroDelMago = random.Next(0,10);
         if (distanciaEntreNumeros(numeroDelMago, numeroContrincante) ==  distanciaEntreNumeros(numeroDelMago,numeroIngresado))
         {
             return 3;           
