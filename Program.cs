@@ -37,7 +37,11 @@ internal class Program
         Mensajes.reglasDelMinijuegoSuerte();
         Mensajes.malIngresoEnSuerte();
         Mensajes.mostrarSalud(listaDePersonajes[num1],listaDePersonajes[num2]);
-
+        Mensajes.mostrarDatos(listaDePersonajes[num1]);
+        Mensajes.gameOver();
+        // Mensajes.presionaEnter();
+        Mensajes.mensajeFinal(listaDePersonajes[num3]);
+        Mensajes.finalUsuarioGanador();
        /* if (listaDePersonajes.Count > 0)
         {
             mostrarLista(listaDePersonajes);

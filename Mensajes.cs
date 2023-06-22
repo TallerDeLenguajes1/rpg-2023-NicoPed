@@ -68,4 +68,79 @@ public class Mensajes{
         Console.WriteLine (@"╚═══════════════════════════════╝");
 
         }
+    public void mostrarLista(List<Personaje> listaDePersonajes){
+        foreach (var personaje in listaDePersonajes)
+        {
+            mostrarDatos(personaje);
+        }
+    }
+    public void mostrarDatos(Personaje personaje){
+        Console.WriteLine("     ╔══════════════════════════════════════╗");
+        Console.WriteLine("     ║ Nombre: "+personaje.Nombre.PadRight(29)+"║");
+        Console.WriteLine("     ║ Apodo: "+personaje.Apodo.PadRight(30)+"║");
+        Console.WriteLine("     ║ Tipo: "+personaje.Tipo.ToString().PadRight(31)+"║");
+        Console.WriteLine("     ║ Fecha_nac: "+personaje.Fecha_nac.ToShortDateString().PadRight(26)+"║");
+        Console.WriteLine("     ║ Edad: "+personaje.Edad.ToString().PadRight(31)+"║");
+        Console.WriteLine("     ║ Velocidad: "+personaje.Velocidad.ToString().PadRight(26) +"║");
+        Console.WriteLine("     ║ Destreza: "+personaje.Destreza.ToString().PadRight(27)+"║");
+        Console.WriteLine("     ║ Fuerza: "+personaje.Fuerza.ToString().PadRight(29)+"║");
+        Console.WriteLine("     ║ Nivel: "+personaje.Nivel.ToString().PadRight(30)+"║");
+        Console.WriteLine("     ║ Defensa: "+personaje.Defensa.ToString().PadRight(28)+"║");
+        Console.WriteLine("     ║ Salud: "+personaje.Salud.ToString().PadRight(30)+"║");
+        Console.WriteLine("     ╚══════════════════════════════════════╝");
+    
+
+    }
+    public void gameOver(){
+    Console.WriteLine(" ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
+    Console.WriteLine("░░░█████████░░░████████░░░░██░░░░██░░░░█████████░░");
+    Console.WriteLine("░░██░░░░░░██░░██░░░░░░██░░████░░████░░██░░░░░░░░░░");
+    Console.WriteLine("░░██░░░░░░░░░░██░░░░░░██░░██░░██░░██░░██░░░░░░░░░░");
+    Console.WriteLine("░░██░░░░████░░██████████░░██░░░░░░██░░████████░░░░");
+    Console.WriteLine("░░██░░░░░░██░░██░░░░░░██░░██░░░░░░██░░██░░░░░░░░░░");
+    Console.WriteLine("░░░█████████░░██░░░░░░██░░██░░░░░░██░░░█████████░░");
+    Console.WriteLine(" ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
+    Console.WriteLine("");
+    Console.WriteLine(" ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
+    Console.WriteLine("░░░████████░░░██░░░░░░██░░░█████████░░██████████░░");
+    Console.WriteLine("░░██░░░░░░██░░██░░░░░░██░░██░░░░░░░░░░██░░░░░░██░░");
+    Console.WriteLine("░░██░░░░░░██░░██░░░░░░██░░██░░░░░░░░░░██░░░░░░██░░");
+    Console.WriteLine("░░██░░░░░░██░░░██░░░░██░░░████████░░░░████████░░░░");
+    Console.WriteLine("░░██░░░░░░██░░░░██░░██░░░░██░░░░░░░░░░██░░░░░██░░░");
+    Console.WriteLine("░░░████████░░░░░░░██░░░░░░░█████████░░██░░░░░░██░░");
+    Console.WriteLine(" ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
+    Console.WriteLine("»»» Wanna Play Again? »»» 1:yes 0: No");
+    }
+    
+    public void presionaEnter(){
+        Console.WriteLine("Presione ENTER para continuar...");
+        Console.ReadLine();
+    }
+    public void mensajeFinal(Personaje ganador){
+        string empty= "";
+        Console.WriteLine("╔────────────────────────────────────────────────╗");
+        Console.WriteLine("│EL CAMINO FUE ARDUO Y DESPUÉS DE ARDUAS BATALLAS│");
+        Console.WriteLine("│      FINALMENTE TENEMOS UN GANADOR Y ES:       │");  
+        Console.WriteLine("╚────────────────────────────────────────────────╝");  
+        Console.WriteLine(empty.PadRight(22)+"WINNER");
+        Console.WriteLine("╔════════════════════════════════════════════════╗");
+        Console.WriteLine("│"+empty.PadRight(22)+""+ganador.Nombre.PadRight(26)+"│");
+        Console.WriteLine("│"+empty.PadRight(11)+""+ganador.Apodo.PadLeft(24).PadRight(37)+"│");  
+        Console.WriteLine("╚════════════════════════════════════════════════╝");       
+        Console.WriteLine("╔────────────────────────────────────────────────╗");
+        Console.WriteLine("│ HAS LOGRADO LA GLORIA ETERNA OH GRAN LUCHADOR! │");
+        Console.WriteLine("│     AHORA REGOCIJATE CAMPEÓN DE CAMPEONES      │");  
+        Console.WriteLine("├────────────────────────────────────────────────┤");  
+        Console.WriteLine("╚────────────────────────────────────────────────╝");  
+        Console.WriteLine(" ══════════════ AQUÍ VAN TUS STATS ══════════════");  
+        mostrarDatos(ganador);
+    }
+    public void finalUsuarioGanador(){
+        Console.WriteLine("╔────────────────────────────────────────────────╗");
+        Console.WriteLine("│   Y FELICIDADES A TI PERSONA REAL QUE MANEJA   │");
+        Console.WriteLine("│   A ESTE PERSONAJE, TU TAMBIEN TIENES GLORIA   │");
+        Console.WriteLine("│       GRACIAS POR JUGAR CON NICOPcompany       │");
+        Console.WriteLine("╚────────────────────────────────────────────────╝");  
+
+    }
 }
