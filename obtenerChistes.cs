@@ -5,7 +5,7 @@ using System.Text.Json;
 class obtenerChiste{
     
     public static unChiste Chiste(){
-        var url= $"https://v2.jokeapi.dev/joke/Programming?lang=es";
+        var url= $"https://v2.jokeapi.dev/joke/Any?lang=es";
         var request = (HttpWebRequest) WebRequest.Create(url);
         request.Method = "GET";
         request.ContentType = "application/json";

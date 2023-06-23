@@ -37,6 +37,11 @@ namespace Chistes;
         [JsonPropertyName("joke")]
         public string joke { get; set; }
 
+        [JsonPropertyName("setup")]
+        public string setup { get; set; }
+
+        [JsonPropertyName("delivery")]
+        public string delivery { get; set; }
         [JsonPropertyName("flags")]
         public Flags flags { get; set; }
 

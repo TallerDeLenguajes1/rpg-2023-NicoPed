@@ -220,6 +220,10 @@ internal class Program
         }
         numeroContrincante = random.Next(0,10);
         numeroDelMago = random.Next(0,10);
+        if (random.Next(0,2) == 1)
+        {
+            mensaje.contarChisteMalo();
+        }
         mensaje.suerte(numeroIngresado,numeroDelMago,numeroContrincante);
         if (distanciaEntreNumeros(numeroDelMago, numeroContrincante) ==  distanciaEntreNumeros(numeroDelMago,numeroIngresado))
         {

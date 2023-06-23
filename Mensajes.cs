@@ -163,13 +163,39 @@ public class Mensajes{
     public void contarChisteMalo(){
         var nuevoChiste = new unChiste();
         nuevoChiste = obtenerChiste.Chiste();
+        string chiste = nuevoChiste.joke;
+        string cantlineas = "──";
         if (nuevoChiste.type == "single")
         {
-            Console.WriteLine($"{nuevoChiste.joke}");
+            for (int i = 0; i < chiste.Count(); i++)
+            {
+                cantlineas+= "─";
+            }
+            Console.WriteLine(">»»» El mago dice");
+            Console.WriteLine("╔"+cantlineas+"╗");
+            Console.WriteLine($"│»{chiste}«│");
+            Console.WriteLine("╚"+cantlineas+"╝");
         }else
         {
             if (nuevoChiste.type == "twopart")
             {
+            int cantidad = 0;
+            int diferenciaEntreAmbos = 0;
+            cantidad = nuevoChiste.setup.Count();
+            diferenciaEntreAmbos = nuevoChiste.delivery.Count() - cantidad; 
+            if (diferenciaEntreAmbos > 0 )
+            {
+                cantidad += diferenciaEntreAmbos;
+            }
+            for (int i = 0; i < cantidad ; i++)
+            {
+                cantlineas+= "─";
+            }
+            Console.WriteLine("»»» El mago dice:");
+            Console.WriteLine("╔"+cantlineas+"╗");
+            Console.WriteLine($"│»{nuevoChiste.setup.PadRight(cantidad)} │");
+            Console.WriteLine($"│{nuevoChiste.delivery.PadRight(cantidad + 1)}«│");
+            Console.WriteLine("╚"+cantlineas+"╝");
                 
             }
         }
