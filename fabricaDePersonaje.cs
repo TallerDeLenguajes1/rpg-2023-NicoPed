@@ -5,7 +5,9 @@ private string [ , ] nombresDemonios = {{"Enmu","Luna Inferior Uno"},{"Rokuro","
 private string [ , ] nombresCrecientes = {{"Gyokko","Luna Superior Cinco"},{"Nakime","Luna Superior Cuatro"},{"Akaza","Luna Superior Tres"},{"Doma","Luna Superior Dos"},{"Kokushibo","Luna Superior Uno"}};
 private string [ , ] nombresCazadores = {{"Zenitsu","Respiración del Rayo"},{"Tanjiro","Respiración Solar"},{"Inosuke","Respiración de la Bestia"},{"Kanao","Respiración De La Mariposa"},{"Genya","Come Demonios"}};
 private string [ , ] nombresHashira = {{"Tomioka","Respiración del Agua"},{"Uzui","Respiración del Sonido"},{"Shinobu","Respiración de la Mariposa"},{"Muichiro","Respiración De La neblina"},{"Mitsuri","Respiración Del Amor"}};
-
+// forma común: haces un vector con los indices de los personaje sy después con ese vector una lista que vaya del 1 al 8 y voy sacando de esa lista los numeros, etnonces no habrá nume repetidos
+//permutar etc etc
+// p hacer un control y ya
     public Personaje crearPersonaje(){
         var nuevoPersonaje = new Personaje();
         var random = new Random(DateTime.Now.Millisecond);

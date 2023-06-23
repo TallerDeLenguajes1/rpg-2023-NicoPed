@@ -1,5 +1,5 @@
 namespace Personajes;
-
+using Chistes;
 public class Mensajes{
     public void VS(Personaje luchador1, Personaje luchador2){
         Console.WriteLine (@"╔═══════════════════════════════╗");
@@ -48,6 +48,8 @@ public class Mensajes{
         Console.WriteLine("║ pensado por el mago. Se le dara +10   ║");
         Console.WriteLine("║ de fuerza momentanea                « ║");
         Console.WriteLine("║ »Muchas suerte... La necesitaras    « ║");
+        Console.WriteLine("║ »PD:El mago ademas de hechizos lanza  ║");
+        Console.WriteLine("║  chistes bastante malos. Solo riete « ║");
         Console.WriteLine("╚═══════════════════════════════════════╝");
         presionaEnter();
     }
@@ -157,5 +159,19 @@ public class Mensajes{
         Console.WriteLine("│       GRACIAS POR JUGAR CON NICOPcompany       │");
         Console.WriteLine("╚────────────────────────────────────────────────╝");  
 
+    }
+    public void contarChisteMalo(){
+        var nuevoChiste = new unChiste();
+        nuevoChiste = obtenerChiste.Chiste();
+        if (nuevoChiste.type == "single")
+        {
+            Console.WriteLine($"{nuevoChiste.joke}");
+        }else
+        {
+            if (nuevoChiste.type == "twopart")
+            {
+                
+            }
+        }
     }
 }

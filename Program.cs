@@ -5,10 +5,11 @@ internal class Program
     private static void Main(string[] args)
     {
         var mensaje = new Mensajes();
-        const int CANTIDAD_DE_PERSONAJES = 8;
+        const int CANTIDAD_DE_PERSONAJES = 2; //podes pedir que te muestren o directamente vos poner lo que vos quuieras
         string archivoJson = "personajes.json";
         int opcionFinal = 0;
         string? buffer;
+
         var AyudaJson = new PersonajesJson();
         var listaDePersonajes = new List<Personaje>();
     do
