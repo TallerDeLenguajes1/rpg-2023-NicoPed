@@ -123,7 +123,7 @@ public class Mensajes{
     Console.WriteLine("░░░████████░░░░░░░██░░░░░░░█████████░░██░░░░░░██░░");
     Console.WriteLine(" ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
     Console.WriteLine("");
-    Console.WriteLine("»»» Wanna Play Again? »»» 1:yes 0: No");
+    Console.WriteLine("»»» Wanna Play Again? »»» 1:yes any Key: No");
     }
     
     public void presionaEnter(){
@@ -191,6 +191,7 @@ public class Mensajes{
             {
                 cantlineas+= "─";
             }
+            Console.WriteLine("");
             Console.WriteLine("»»» El mago dice:");
             Console.WriteLine("╔"+cantlineas+"╗");
             Console.WriteLine($"│»{nuevoChiste.setup.PadRight(cantidad)} │");
