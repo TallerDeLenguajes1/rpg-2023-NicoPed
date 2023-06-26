@@ -10,7 +10,7 @@ private string [ , ] nombresHashira = {{"Tomioka","Respiración del Agua"},{"Uzu
 // p hacer un control y ya
     public Personaje crearPersonaje(){
         var nuevoPersonaje = new Personaje();
-        var random = new Random(DateTime.Now.Millisecond);
+        var random = new Random(DateTime.Now.Microsecond);
         var numeroRandom = random.Next(0,4);
         tipoDePersonaje tipoPersonaje;
         tipoPersonaje = (tipoDePersonaje)numeroRandom;
@@ -50,11 +50,11 @@ private string [ , ] nombresHashira = {{"Tomioka","Respiración del Agua"},{"Uzu
             nuevoDemonio.Fecha_nac = new DateTime(1000,12,5);
         }
         nuevoDemonio.Edad = nuevoDemonio.SacarEdad();
-        nuevoDemonio.Velocidad = random.Next(2,6);
+        nuevoDemonio.Velocidad = random.Next(2,7);
         nuevoDemonio.Destreza = random.Next(1,3);
-        nuevoDemonio.Fuerza = random.Next(2,6);
-        nuevoDemonio.Nivel = random.Next(2,6);
-        nuevoDemonio.Defensa = random.Next(2,6);
+        nuevoDemonio.Fuerza = random.Next(2,7);
+        nuevoDemonio.Nivel = random.Next(1,4);
+        nuevoDemonio.Defensa = random.Next(2,7);
         nuevoDemonio.Salud = 100;
         return nuevoDemonio;
     }
@@ -76,11 +76,11 @@ private string [ , ] nombresHashira = {{"Tomioka","Respiración del Agua"},{"Uzu
             nuevoCazador.Fecha_nac = new DateTime(1980,12,5);
         }
         nuevoCazador.Edad = nuevoCazador.SacarEdad();
-        nuevoCazador.Velocidad = random.Next(1,5);
+        nuevoCazador.Velocidad = random.Next(3,6);
         nuevoCazador.Destreza = random.Next(1,3);
-        nuevoCazador.Fuerza = random.Next(1,5);
-        nuevoCazador.Nivel = random.Next(1,5);
-        nuevoCazador.Defensa = random.Next(1,5);
+        nuevoCazador.Fuerza = random.Next(3,6);
+        nuevoCazador.Nivel = random.Next(1,4);
+        nuevoCazador.Defensa = random.Next(3,6);
         nuevoCazador.Salud = 100;
         return nuevoCazador;
     }
@@ -102,11 +102,11 @@ private string [ , ] nombresHashira = {{"Tomioka","Respiración del Agua"},{"Uzu
             nuevoHashira.Fecha_nac = new DateTime(1980,12,5);
         }
         nuevoHashira.Edad = nuevoHashira.SacarEdad();
-        nuevoHashira.Velocidad = random.Next(5,10);
+        nuevoHashira.Velocidad = random.Next(4,7);
         nuevoHashira.Destreza = random.Next(3,5);
-        nuevoHashira.Fuerza = random.Next(5,10);
-        nuevoHashira.Nivel = random.Next(5,10);
-        nuevoHashira.Defensa = random.Next(5,10);
+        nuevoHashira.Fuerza = random.Next(4,7);
+        nuevoHashira.Nivel = random.Next(3,8);
+        nuevoHashira.Defensa = random.Next(4,7);
         nuevoHashira.Salud = 100;
         return nuevoHashira;
     }
@@ -128,13 +128,40 @@ private string [ , ] nombresHashira = {{"Tomioka","Respiración del Agua"},{"Uzu
             nuevoCreciente.Fecha_nac = new DateTime(1000,12,5);
         }
         nuevoCreciente.Edad = nuevoCreciente.SacarEdad();
-        nuevoCreciente.Velocidad = random.Next(6,11);
-        nuevoCreciente.Destreza = random.Next(3,5);
-        nuevoCreciente.Fuerza = random.Next(6,11);
-        nuevoCreciente.Nivel = random.Next(6,11);
-        nuevoCreciente.Defensa = random.Next(6,11);
+        nuevoCreciente.Velocidad = random.Next(3,8);
+        nuevoCreciente.Destreza = random.Next(3,6);
+        nuevoCreciente.Fuerza = random.Next(3,8);
+        nuevoCreciente.Nivel = random.Next(3,8);
+        nuevoCreciente.Defensa = random.Next(3,8);
         nuevoCreciente.Salud = 100;
         return nuevoCreciente;
+    }
+    public Personaje aleatorio(string nombre, string apodo, DateTime fechaDeNac){
+        var random = new Random();
+        int restar = random.Next(0,3);
+        var aleatorio = new Personaje();
+        aleatorio.Nombre = nombre;
+        aleatorio.Apodo = apodo;
+        aleatorio.Fecha_nac = fechaDeNac;
+        aleatorio.Edad = aleatorio.SacarEdad();
+        if (random.Next(0,2) == 0)
+        {
+            aleatorio.Defensa = 6 - restar;
+            aleatorio.Fuerza = 6 + restar;
+            aleatorio.Destreza = 3 - restar;
+            aleatorio.Velocidad = 5 + restar;
+        }else
+        {
+            aleatorio.Defensa = 6 + restar;
+            aleatorio.Fuerza = 6 - restar;
+            aleatorio.Destreza = 3 + restar;
+            aleatorio.Velocidad = 5 - restar;
+        }
+            aleatorio.Nivel = 1;
+            aleatorio.Salud = 100;
+            aleatorio.Tipo = tipoDePersonaje.Cazador;
+        return aleatorio;
+
     }
 }
 // 
