@@ -53,7 +53,7 @@ private string [ , ] nombresHashira = {{"Tomioka","Respiración del Agua"},{"Uzu
         nuevoDemonio.Velocidad = random.Next(2,7);
         nuevoDemonio.Destreza = random.Next(1,3);
         nuevoDemonio.Fuerza = random.Next(2,7);
-        nuevoDemonio.Nivel = random.Next(1,4);
+        nuevoDemonio.Poder = random.Next(2,6);
         nuevoDemonio.Defensa = random.Next(2,7);
         nuevoDemonio.Salud = 100;
         return nuevoDemonio;
@@ -79,7 +79,7 @@ private string [ , ] nombresHashira = {{"Tomioka","Respiración del Agua"},{"Uzu
         nuevoCazador.Velocidad = random.Next(3,6);
         nuevoCazador.Destreza = random.Next(1,3);
         nuevoCazador.Fuerza = random.Next(3,6);
-        nuevoCazador.Nivel = random.Next(1,4);
+        nuevoCazador.Poder = random.Next(2,5);
         nuevoCazador.Defensa = random.Next(3,6);
         nuevoCazador.Salud = 100;
         return nuevoCazador;
@@ -105,7 +105,7 @@ private string [ , ] nombresHashira = {{"Tomioka","Respiración del Agua"},{"Uzu
         nuevoHashira.Velocidad = random.Next(4,7);
         nuevoHashira.Destreza = random.Next(3,5);
         nuevoHashira.Fuerza = random.Next(4,7);
-        nuevoHashira.Nivel = random.Next(3,8);
+        nuevoHashira.Poder = random.Next(3,8);
         nuevoHashira.Defensa = random.Next(4,7);
         nuevoHashira.Salud = 100;
         return nuevoHashira;
@@ -131,7 +131,7 @@ private string [ , ] nombresHashira = {{"Tomioka","Respiración del Agua"},{"Uzu
         nuevoCreciente.Velocidad = random.Next(3,8);
         nuevoCreciente.Destreza = random.Next(3,6);
         nuevoCreciente.Fuerza = random.Next(3,8);
-        nuevoCreciente.Nivel = random.Next(3,8);
+        nuevoCreciente.Poder = random.Next(3,8);
         nuevoCreciente.Defensa = random.Next(3,8);
         nuevoCreciente.Salud = 100;
         return nuevoCreciente;
@@ -150,14 +150,16 @@ private string [ , ] nombresHashira = {{"Tomioka","Respiración del Agua"},{"Uzu
             aleatorio.Fuerza = 6 + restar;
             aleatorio.Destreza = 3 - restar;
             aleatorio.Velocidad = 5 + restar;
+            aleatorio.Poder = 5;
+
         }else
         {
             aleatorio.Defensa = 6 + restar;
             aleatorio.Fuerza = 6 - restar;
             aleatorio.Destreza = 3 + restar;
-            aleatorio.Velocidad = 5 - restar;
+            aleatorio.Velocidad = 6 - restar;
+            aleatorio.Poder = 4;
         }
-            aleatorio.Nivel = 1;
             aleatorio.Salud = 100;
             aleatorio.Tipo = tipoDePersonaje.Cazador;
         return aleatorio;

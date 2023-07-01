@@ -127,10 +127,12 @@ internal class Program
         int fuerza = 0;
         int destreza = 0;
         int velocidad = 0;
+        int poder = 0;
+        int puntos = 25;
         string? buffer;
             do
             {
-                if (suma > 20)
+                if (suma > puntos)
                 {
                 Console.WriteLine("╔═══════════════════════════════════════════════╗");
                 Console.WriteLine("║ »La suma de sus habilidades es mayor que 20 « ║");
@@ -142,7 +144,7 @@ internal class Program
                 Console.WriteLine("╔═══════════════════════════════════════════════╗");
                 Console.WriteLine("║ »Ingrese las caracteristicas de su personaje« ║");
                 Console.WriteLine("║ »Recordando que la suma entre todas las habi- ║");
-                Console.WriteLine("║  lidades debe ser menor a 20. Otra condición, ║");
+                Console.WriteLine("║  lidades debe ser menor a 25. Otra condición, ║");
                 Console.WriteLine("║  es que la destreza debe ser menor a 5, y las ║");
                 Console.WriteLine("║  demás habilidades deben de ser menor a 10. « ║");
                 Console.WriteLine("╚═══════════════════════════════════════════════╝");
@@ -150,18 +152,18 @@ internal class Program
                 do
                 {
                     Console.WriteLine("╔═══════════════════════════════════╗");
-                    Console.WriteLine($"║ »Le quedan {(20-suma).ToString().PadRight(2)} puntos a repartir«  ║");
+                    Console.WriteLine($"║ »Le quedan {(puntos-suma).ToString().PadRight(2)} puntos a repartir«  ║");
                     Console.WriteLine("║ »Ingrese la Destreza:  «          ║");
                     Console.WriteLine("╚═══════════════════════════════════╝"); 
 
                     Console.Write(" » Ingrese: ");
                     buffer = Console.ReadLine();
-                } while ( !int.TryParse(buffer,out fuerza) || fuerza > 10);
-                    suma += fuerza; 
+                } while ( !int.TryParse(buffer,out destreza) || destreza > 5);
+                    suma += destreza; 
                 do
                 {
                     Console.WriteLine("╔═══════════════════════════════════╗");
-                    Console.WriteLine($"║ »Le quedan {(20-suma).ToString().PadRight(2)} puntos a repartir«  ║");
+                    Console.WriteLine($"║ »Le quedan {(puntos-suma).ToString().PadRight(2)} puntos a repartir«  ║");
                     Console.WriteLine("║ »Ingrese la Velocidad:  «         ║");
                     Console.WriteLine("╚═══════════════════════════════════╝"); 
                     Console.Write(" » Ingrese: ");
@@ -171,27 +173,40 @@ internal class Program
                 do
                 {
                     Console.WriteLine("╔═══════════════════════════════════╗");
-                    Console.WriteLine($"║ »Le quedan {(20-suma).ToString().PadRight(2)} puntos a repartir«  ║");
+                    Console.WriteLine($"║ »Le quedan {(puntos-suma).ToString().PadRight(2)} puntos a repartir«  ║");
                     Console.WriteLine("║ »Ingrese la Defensa:  «           ║");
                     Console.WriteLine("╚═══════════════════════════════════╝"); 
                     Console.Write(" » Ingrese: ");
                     buffer = Console.ReadLine();
                 } while ( !int.TryParse(buffer,out defensa) || defensa > 10);
                     suma += defensa;
-                if (suma <= 20)
+                if (suma <= puntos)
                 {    
-                do
-                {
-                    Console.WriteLine("╔═══════════════════════════════════╗");
-                    Console.WriteLine($"║ »Le quedan {(20-suma).ToString().PadRight(2)} puntos a repartir«  ║");
-                    Console.WriteLine("║ »Ingrese la Fuerza:  «            ║");
-                    Console.WriteLine("╚═══════════════════════════════════╝"); 
-                    Console.Write(" » Ingrese: ");
-                    buffer = Console.ReadLine();
-                } while ( !int.TryParse(buffer,out destreza) || destreza > 10);
-                    suma += destreza;
+                    do
+                    {
+                        Console.WriteLine("╔═══════════════════════════════════╗");
+                        Console.WriteLine($"║ »Le quedan {(puntos-suma).ToString().PadRight(2)} puntos a repartir«  ║");
+                        Console.WriteLine("║ »Ingrese el Poder:  «             ║");
+                        Console.WriteLine("╚═══════════════════════════════════╝"); 
+                        Console.Write(" » Ingrese: ");
+                        buffer = Console.ReadLine();
+                    } while ( !int.TryParse(buffer,out poder) || poder > 10);
+                        suma += poder;
+                    if (suma <= puntos)
+                    {
+                        do
+                        {
+                            Console.WriteLine("╔═══════════════════════════════════╗");
+                            Console.WriteLine($"║ »Le quedan {(puntos-suma).ToString().PadRight(2)} puntos a repartir«  ║");
+                            Console.WriteLine("║ »Ingrese la Fuerza:  «            ║");
+                            Console.WriteLine("╚═══════════════════════════════════╝"); 
+                            Console.Write(" » Ingrese: ");
+                            buffer = Console.ReadLine();
+                        } while ( !int.TryParse(buffer,out fuerza) || fuerza > 10);
+                            suma += fuerza;
+                    }
                 }
-            } while (suma > 20);
+            } while (suma > puntos);
              
             usuario.Nombre = nombre;
             usuario.Apodo = apodo;
@@ -201,7 +216,7 @@ internal class Program
             usuario.Destreza =destreza;
             usuario.Defensa = defensa;
             usuario.Velocidad = velocidad;
-            usuario.Nivel = 1;
+            usuario.Poder = poder;
             usuario.Salud = 100;
             usuario.Tipo = tipoDePersonaje.Cazador;
             return usuario;
@@ -293,7 +308,7 @@ internal class Program
     private static int calcularGolpe(Personaje luchador, int fuerzaExtra){
         var random = new Random(DateTime.Now.Millisecond);
         int danioProvocado = 0;
-        int Ataque = luchador.Destreza * (luchador.Fuerza + fuerzaExtra) * luchador.Nivel;
+        int Ataque = luchador.Destreza * (luchador.Fuerza + fuerzaExtra) * luchador.Poder;
         int Efectividad = random.Next(0,101);
         int Defensa = luchador.Defensa * luchador.Velocidad;
         int ConstanteDeAjuste = 500; 
@@ -410,19 +425,19 @@ internal class Program
         switch (opcion)
         {
             case 1:
-            Vencedor.Velocidad += 5;
+            Vencedor.Velocidad += 3;
             break;
             case 2:
-            Vencedor.Destreza += 2;
+            Vencedor.Destreza += 1;
             break;
             case 3:
-            Vencedor.Fuerza += 5;
+            Vencedor.Fuerza += 3;
             break;
             case 4:
-            Vencedor.Nivel += 5;
+            Vencedor.Poder += 3;
             break;
             case 5:
-            Vencedor.Defensa += 5;
+            Vencedor.Defensa += 3;
             break;
             case 6:
             Vencedor.Salud += 20;

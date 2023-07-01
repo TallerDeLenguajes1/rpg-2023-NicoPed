@@ -16,7 +16,7 @@ public class Personaje
     private int velocidad;
     private int destreza;
     private int fuerza;
-    private int nivel;
+    private int poder;
     private int defensa;
     private int salud;
 
@@ -29,7 +29,7 @@ public class Personaje
     public int Velocidad { get => velocidad; set => velocidad = value; }
     public int Destreza { get => destreza; set => destreza = value; }
     public int Fuerza { get => fuerza; set => fuerza = value; }
-    public int Nivel { get => nivel; set => nivel = value; }
+    public int Poder { get => poder; set => poder = value; }
     public int Defensa { get => defensa; set => defensa = value; }
     public int Salud { get => salud; set => salud = value; }
 

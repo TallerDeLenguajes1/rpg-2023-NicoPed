@@ -97,7 +97,7 @@ public class Mensajes{
         Console.WriteLine("     ║ Velocidad: "+personaje.Velocidad.ToString().PadRight(26) +"║");
         Console.WriteLine("     ║ Destreza: "+personaje.Destreza.ToString().PadRight(27)+"║");
         Console.WriteLine("     ║ Fuerza: "+personaje.Fuerza.ToString().PadRight(29)+"║");
-        Console.WriteLine("     ║ Nivel: "+personaje.Nivel.ToString().PadRight(30)+"║");
+        Console.WriteLine("     ║ Poder: "+personaje.Poder.ToString().PadRight(30)+"║");
         Console.WriteLine("     ║ Defensa: "+personaje.Defensa.ToString().PadRight(28)+"║");
         Console.WriteLine("     ║ Salud: "+personaje.Salud.ToString().PadRight(30)+"║");
         Console.WriteLine("     ╚══════════════════════════════════════╝");
