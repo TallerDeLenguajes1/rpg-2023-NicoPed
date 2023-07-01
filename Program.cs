@@ -5,7 +5,7 @@ internal class Program
     private static void Main(string[] args)
     {
         var mensaje = new Mensajes();
-        const int CANTIDAD_DE_PERSONAJES = 7; //podes pedir que te muestren o directamente vos poner lo que vos quuieras
+        const int CANTIDAD_DE_PERSONAJES = 1; //podes pedir que te muestren o directamente vos poner lo que vos quuieras
         string archivoJson = "personajes.json";
         int opcionFinal = 0;
         string? buffer;
@@ -54,7 +54,7 @@ internal class Program
             opcionFinal = 0;
         }
     } while (opcionFinal != 0);
-    
+    AyudaJson.eliminarPersonajes(archivoJson);
     }
     private static Personaje ingresoUsuario(){
         var usuario = new Personaje ();
@@ -86,6 +86,7 @@ internal class Program
             Console.WriteLine("╚═══════════════════════════════════╝");
             Console.Write(" » Ingrese: ");
             bufferfechaDeNac = Console.ReadLine();
+            bufferfechaDeNac = "12-11-2001";
         } while (!DateTime.TryParse(bufferfechaDeNac, out fecha_nac) || fecha_nac > DateTime.Today); // nombre.any se fija si en todo el arreglo todos son caracteres
        
         string? buffer;

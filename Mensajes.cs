@@ -41,14 +41,14 @@ public class Mensajes{
     }
     public void reglasDelMinijuegoSuerte(){
         Console.WriteLine("╔═══════════════════════════════════════╗");
-        Console.WriteLine("║ »Antes de la pelea una pequeña regla« ║");
-        Console.WriteLine("║ »Debes ingresar un número del 0 al 9« ║");
-        Console.WriteLine("║ »Tu conticante hará lo mismo        « ║");
-        Console.WriteLine("║ »Y el que se acerque más al número    ║");
-        Console.WriteLine("║ pensado por el mago. Se le dara +10   ║");
-        Console.WriteLine("║ de fuerza momentanea                « ║");
-        Console.WriteLine("║ »Muchas suerte... La necesitaras    « ║");
-        Console.WriteLine("║ »PD:El mago ademas de hechizos lanza  ║");
+        Console.WriteLine("║  Antes de la pelea una pequeña regla  ║");
+        Console.WriteLine("║  Debes ingresar un número del 0 al 9  ║");
+        Console.WriteLine("║      Tu conticante hará lo mismo      ║");
+        Console.WriteLine("║   Y el que se acerque más al número   ║");
+        Console.WriteLine("║   pensado por el mago. Se le dara     ║");
+        Console.WriteLine("║      +10 de fuerza momentanea«        ║");
+        Console.WriteLine("║    Muchas suerte... La necesitaras    ║");
+        Console.WriteLine("║ »PD:El mago además de hechizos lanza  ║");
         Console.WriteLine("║  chistes bastante malos. Solo riete « ║");
         Console.WriteLine("╚═══════════════════════════════════════╝");
         presionaEnter();
@@ -105,25 +105,27 @@ public class Mensajes{
 
     }
     public void gameOver(){
-    Console.WriteLine(" ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-    Console.WriteLine("░░░█████████░░░████████░░░░██░░░░██░░░░█████████░░");
-    Console.WriteLine("░░██░░░░░░██░░██░░░░░░██░░████░░████░░██░░░░░░░░░░");
-    Console.WriteLine("░░██░░░░░░░░░░██░░░░░░██░░██░░██░░██░░██░░░░░░░░░░");
-    Console.WriteLine("░░██░░░░████░░██████████░░██░░░░░░██░░████████░░░░");
-    Console.WriteLine("░░██░░░░░░██░░██░░░░░░██░░██░░░░░░██░░██░░░░░░░░░░");
-    Console.WriteLine("░░░█████████░░██░░░░░░██░░██░░░░░░██░░░█████████░░");
-    Console.WriteLine(" ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
+    tipeo(@" ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+   █████████   ████████    ██    ██    █████████  
+  ██      ██  ██      ██  ████  ████  ██          
+  ██          ██      ██  ██  ██  ██  ██          
+  ██    ████  ██████████  ██      ██  ████████    
+  ██      ██  ██      ██  ██      ██  ██          
+   █████████  ██      ██  ██      ██   █████████  
+ ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄",1);
     Console.WriteLine("");
-    Console.WriteLine(" ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
-    Console.WriteLine("░░░████████░░░██░░░░░░██░░░█████████░░██████████░░");
-    Console.WriteLine("░░██░░░░░░██░░██░░░░░░██░░██░░░░░░░░░░██░░░░░░██░░");
-    Console.WriteLine("░░██░░░░░░██░░██░░░░░░██░░██░░░░░░░░░░██░░░░░░██░░");
-    Console.WriteLine("░░██░░░░░░██░░░██░░░░██░░░████████░░░░████████░░░░");
-    Console.WriteLine("░░██░░░░░░██░░░░██░░██░░░░██░░░░░░░░░░██░░░░░██░░░");
-    Console.WriteLine("░░░████████░░░░░░░██░░░░░░░█████████░░██░░░░░░██░░");
-    Console.WriteLine(" ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░");
+    tipeo(@" ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+   ████████   ██      ██   █████████  ██████████  
+  ██      ██  ██      ██  ██          ██      ██  
+  ██      ██  ██      ██  ██          ██      ██  
+  ██      ██   ██    ██   ████████    ████████    
+  ██      ██    ██  ██    ██          ██     ██   
+   ████████       ██       █████████  ██      ██  
+ ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄",1);
     Console.WriteLine("");
-    Console.WriteLine("»»» Wanna Play Again? »»» 1:yes any Key: No");
+    tipeo("»»» ¿Desea volver a jugar? »»» 1:Si Cualquier tecla: No",20);
+    tipeo("»»» Ingrese: ",20);
+
     }
     
     public void presionaEnter(){
@@ -139,8 +141,8 @@ public class Mensajes{
         presionaEnter();  
         Console.WriteLine(empty.PadRight(22)+"WINNER");
         Console.WriteLine("╔════════════════════════════════════════════════╗");
-        Console.WriteLine("│"+empty.PadRight(22)+""+ganador.Nombre.PadRight(26)+"│");
-        Console.WriteLine("│"+empty.PadRight(11)+""+ganador.Apodo.PadLeft(24).PadRight(37)+"│");  
+        Console.WriteLine("│"+empty.PadRight(18)+""+ganador.Nombre.PadRight(30)+"│");
+        Console.WriteLine("│"+empty.PadRight(18)+""+ganador.Apodo.PadRight(30)+"│");  
         Console.WriteLine("╚════════════════════════════════════════════════╝");       
         presionaEnter();
         Console.WriteLine("╔────────────────────────────────────────────────╗");
@@ -191,7 +193,7 @@ public class Mensajes{
             {
                 cantlineas+= "─";
             }
-            Console.WriteLine("");
+            Console.WriteLine("\n");
             Console.WriteLine("»»» El mago dice:");
             Console.WriteLine("╔"+cantlineas+"╗");
             Console.WriteLine($"│»{nuevoChiste.setup.PadRight(cantidad)} │");
@@ -200,5 +202,15 @@ public class Mensajes{
                 
             }
         }
+    }
+    public string tipeo(string linea,int rapidez){
+            var tipeo = "";
+            foreach (var caracteres in linea)
+            {
+                Console.Write(caracteres);
+                Thread.Sleep(rapidez);
+            }
+            Console.WriteLine();
+        return tipeo;
     }
 }

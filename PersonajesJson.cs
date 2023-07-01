@@ -25,4 +25,11 @@ public class PersonajesJson{
         }
         return false;
     }
+    public void eliminarPersonajes(string rutaDelArchivo){
+
+        if (File.Exists(rutaDelArchivo))
+        {
+            File.Delete(rutaDelArchivo);
+        }
+    }
 }
