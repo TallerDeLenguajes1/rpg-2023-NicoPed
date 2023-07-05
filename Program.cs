@@ -41,10 +41,10 @@ internal class Program
             ganador = Juego(listaDePersonajes,personajePrincipal);
             mensaje.mensajeFinal(ganador);
 
-            // if (ganador == personajePrincipal)
-            // {
-                // mensaje.finalUsuarioGanador()
-            // } 
+            if (ganador == personajePrincipal)
+            {
+                mensaje.finalUsuarioGanador();
+            } 
             mensaje.gameOver();
         }
 
@@ -245,9 +245,15 @@ internal class Program
                     //debo pedirle al usuario que beneficio quiere tener, debo preguntar si es que el que gano es el PerPrin
                     //Pero eso es tarea para otro momento
                     // ganador = recibirBeneficio(ganador,opcion);
-                    beneficio = 0;
-                    beneficio = preguntarBeneficio();
-                    ganador = recibirBeneficio(ganador,random.Next(1,6)); // por el momento
+                    if (ganador == personajePrincipal )
+                    {
+                        beneficio = 0;
+                        beneficio = preguntarBeneficio();
+                        ganador = recibirBeneficio(ganador,beneficio); // por el momento          
+                    }else
+                    {
+                        ganador = recibirBeneficio(ganador,random.Next(1,6)); // por el momento
+                    }
 
                 }else
                 {
