@@ -119,7 +119,6 @@ internal class Program
         }
         return usuario;
     }
-
     private static Personaje creadoPorElUsuario(string nombre, string apodo, DateTime fecha_nac){
         var usuario = new Personaje();
         int suma = 0;
@@ -226,6 +225,7 @@ internal class Program
         var ganador = new Personaje();
         var random = new Random(DateTime.Now.Microsecond);
         var mensaje = new Mensajes();
+        int beneficio = 0;
         while (listaDePersonajes.Count > 1)
         {
             for (int i = 0; i < listaDePersonajes.Count; i+=2)
@@ -245,6 +245,8 @@ internal class Program
                     //debo pedirle al usuario que beneficio quiere tener, debo preguntar si es que el que gano es el PerPrin
                     //Pero eso es tarea para otro momento
                     // ganador = recibirBeneficio(ganador,opcion);
+                    beneficio = 0;
+                    beneficio = preguntarBeneficio();
                     ganador = recibirBeneficio(ganador,random.Next(1,6)); // por el momento
 
                 }else
@@ -428,16 +430,16 @@ internal class Program
             Vencedor.Velocidad += 3;
             break;
             case 2:
-            Vencedor.Destreza += 1;
-            break;
-            case 3:
             Vencedor.Fuerza += 3;
             break;
-            case 4:
+            case 3:
             Vencedor.Poder += 3;
             break;
-            case 5:
+            case 4:
             Vencedor.Defensa += 3;
+            break;
+            case 5:
+            Vencedor.Destreza += 1;
             break;
             case 6:
             Vencedor.Salud += 20;
@@ -448,13 +450,23 @@ internal class Program
         }
         return Vencedor;
     }
-
-}// juego (secuencia simulada , secuencia jugador)
-// for coutn paso i+=2 p1 = i p2 = i+1
-// devolver los ganadores, crear una nueva lista llamada lista de ganadores, i
-//igualar la lista de personajes a esta(de esta forma se eliminarian los otros)
-//así hasta que tenga uno solo
-//debo cambiar los combates para que me den los ganadores en vez de los perdedores
-//debo ver una forma de mostrar los combates haciendo como 4tos semis etc
-// la funcion juego me retornara el ganador de todos
-// mostrar sus datos y la leyenda de ganador
+    private static int preguntarBeneficio(){
+        int opcion = 0;
+        string? buffer = "";
+        do
+        {
+            Console.WriteLine("╔═══════════════════════════════════════╗");
+            Console.WriteLine("║ ¡Has ganado! Ahora elije un beneficio ║");
+            Console.WriteLine("║ » Opción 1: +3 Velocidad              ║");
+            Console.WriteLine("║ » Opción 2: +3 Fuerza                 ║");
+            Console.WriteLine("║ » Opción 3: +3 Poder                  ║");
+            Console.WriteLine("║ » Opción 4: +3 Defensa                ║");
+            Console.WriteLine("║ » Opción 5: +1 Destreza               ║");
+            Console.WriteLine("║ » Opción 6: +20 Salud                 ║");
+            Console.WriteLine("╚═══════════════════════════════════════╝");
+            Console.Write(" » Ingrese: ");
+            buffer = Console.ReadLine();
+        } while (!int.TryParse(buffer,out opcion) || opcion < 1 || opcion > 6 );
+        return opcion;
+    }
+}
