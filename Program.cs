@@ -5,7 +5,7 @@ internal class Program
     private static void Main(string[] args)
     {
         var mensaje = new Mensajes();
-        const int CANTIDAD_DE_PERSONAJES = 1; //podes pedir que te muestren o directamente vos poner lo que vos quuieras
+        int CANTIDAD_DE_PERSONAJES = 1; //podes pedir que te muestren o directamente vos poner lo que vos quuieras
         string archivoJson = "personajes.json";
         int opcionFinal = 0;
         string? buffer;
@@ -14,10 +14,11 @@ internal class Program
         var listaDePersonajes = new List<Personaje>();
     do
     {
-            
         if (!AyudaJson.Existe(archivoJson))
         {
+            CANTIDAD_DE_PERSONAJES = ElegirCantidadPersonajes();
             var nuevaFabrica = new fabricaDePersonaje();
+            listaDePersonajes.Clear();
             for (int i = 0; i < CANTIDAD_DE_PERSONAJES; i++)
             {
                 var nuevoPersonaje = new Personaje();
@@ -30,7 +31,6 @@ internal class Program
         {
             listaDePersonajes =AyudaJson.LeerPersonajes(archivoJson);
         }
-        
         personajePrincipal = ingresoUsuario();
         mensaje.mostrarDatos(personajePrincipal);
         listaDePersonajes.Add(personajePrincipal);
@@ -53,8 +53,29 @@ internal class Program
         {
             opcionFinal = 0;
         }
+        int respMismosPersonajes = 0;
+        if (opcionFinal == 1)
+        {
+            bool condicion;
+            do
+            {
+                Console.WriteLine("»»» ¿Mismos personajes?");
+                Console.WriteLine("1 = Si , 0 = No");
+                Console.WriteLine("»»» Ingrese: ");
+                buffer = Console.ReadLine();
+                condicion = (!int.TryParse(buffer,out respMismosPersonajes) || (respMismosPersonajes != 1 && respMismosPersonajes != 0));
+                if (condicion)
+                {
+                    Console.WriteLine("»»» Ingrese una opción correcta por favor");
+                }
+            } while (condicion);
+
+        }
+        if (respMismosPersonajes == 0)
+        {
+            AyudaJson.eliminarPersonajes(archivoJson);
+        }
     } while (opcionFinal != 0);
-    AyudaJson.eliminarPersonajes(archivoJson);
     }
     private static Personaje ingresoUsuario(){
         var usuario = new Personaje ();
@@ -475,4 +496,30 @@ internal class Program
         } while (!int.TryParse(buffer,out opcion) || opcion < 1 || opcion > 6 );
         return opcion;
     }
+private static int ElegirCantidadPersonajes(){
+    int opcion = 1;
+    string? buffer = "";
+    do
+        {
+            Console.WriteLine("╔═════════════════════════════════════════╗");
+            Console.WriteLine("║ Elija la cantidad de personajes a jugar ║");
+            Console.WriteLine("║ » Opción 1: 4 Personajes                ║");
+            Console.WriteLine("║ » Opción 2: 8 Personajes                ║");
+            Console.WriteLine("║ » Opción 3: 16 Personajes               ║");
+            Console.WriteLine("╚═════════════════════════════════════════╝");
+            Console.Write(" » Ingrese: ");
+            buffer = Console.ReadLine();
+        } while (!int.TryParse(buffer,out opcion) || opcion < 1 || opcion > 3 );
+    switch (opcion)
+    {
+        case 1:
+        return 3; 
+        case 2: 
+            return 7;
+        case 3: 
+            return 15;
+        default:
+        return 1;
+    }   
+}
 }
