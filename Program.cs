@@ -59,14 +59,13 @@ internal class Program
             bool condicion;
             do
             {
-                Console.WriteLine("»»» ¿Mismos personajes?");
-                Console.WriteLine("1 = Si , 0 = No");
-                Console.WriteLine("»»» Ingrese: ");
+                mensaje.preguntarMismosPersonjaes();
+                mensaje.ingrese();
                 buffer = Console.ReadLine();
                 condicion = (!int.TryParse(buffer,out respMismosPersonajes) || (respMismosPersonajes != 1 && respMismosPersonajes != 0));
                 if (condicion)
                 {
-                    Console.WriteLine("»»» Ingrese una opción correcta por favor");
+                    mensaje.IngreseUnaOpcionCorrecta();
                 }
             } while (condicion);
 
@@ -83,51 +82,48 @@ internal class Program
         string? nombre = " ";
         string? apodo = "";
         string? bufferfechaDeNac = "";
+        string? stringFechaDeNac = "";
+        var mensaje = new Mensajes();
+
         DateTime fecha_nac;
         do
         {
-            Console.WriteLine("╔═══════════════════════════════════╗");
-            Console.WriteLine("║ »Ingrese su nombre por favor(10)« ║");
-            Console.WriteLine("╚═══════════════════════════════════╝");
-            Console.Write(" » Ingrese: ");
+            mensaje.ingreseNombre();
+            mensaje.ingrese();
             nombre = Console.ReadLine();
         } while ( string.IsNullOrEmpty(nombre) || nombre.Length >10 || nombre.Any(c => !char.IsLetterOrDigit(c)) ); // nombre.any se fija si en todo el arreglo todos son caracteres
         do
         {
-            Console.WriteLine("╔═══════════════════════════════════╗");
-            Console.WriteLine("║ »Ingrese un apodo por favor(30) « ║");
-            Console.WriteLine("╚═══════════════════════════════════╝");
-            Console.Write(" » Ingrese: ");
+            mensaje.ingreseApodo();
+            mensaje.ingrese();
             apodo = Console.ReadLine();
         } while ( string.IsNullOrEmpty(apodo) || apodo.Length >30 || apodo.Any(c => !char.IsLetterOrDigit(c)) ); // apodo.any se fija si en todo el arreglo todos son caracteres
          do
         {
-            Console.WriteLine("╔═══════════════════════════════════╗");
-            Console.WriteLine("║ »Ingrese su fecha de Nacimiento « ║");
-            Console.WriteLine("╚═══════════════════════════════════╝");
-            Console.Write(" » Ingrese: ");
+            stringFechaDeNac = "";
+            mensaje.ingreseFecha();
+            mensaje.ingreseDia();
             bufferfechaDeNac = Console.ReadLine();
-            bufferfechaDeNac = "12-11-2001";
-        } while (!DateTime.TryParse(bufferfechaDeNac, out fecha_nac) || fecha_nac > DateTime.Today); // nombre.any se fija si en todo el arreglo todos son caracteres
+            stringFechaDeNac = string.Concat(stringFechaDeNac,bufferfechaDeNac);
+            mensaje.ingreseMes();
+            bufferfechaDeNac = Console.ReadLine();
+            stringFechaDeNac = string.Concat(stringFechaDeNac,"/",bufferfechaDeNac);
+            mensaje.ingreseAnio();
+            bufferfechaDeNac = Console.ReadLine();
+            stringFechaDeNac = string.Concat(stringFechaDeNac,"/",bufferfechaDeNac);
+            Console.WriteLine(stringFechaDeNac);
+        } while (!DateTime.TryParse(stringFechaDeNac, out fecha_nac) || fecha_nac > DateTime.Today); // nombre.any se fija si en todo el arreglo todos son caracteres
        
         string? buffer;
-            Console.WriteLine("╔════════════════════════════════╗");
-            Console.WriteLine("║ »Hola nuevo jugador, desea:  « ║");
-            Console.WriteLine("║ »0. Crear su personaje       « ║");
-            Console.WriteLine("║ »1. Generarlo aleatoriamente « ║");
-            Console.WriteLine("╚════════════════════════════════╝");
+            mensaje.CrearOGenerarPersonaje();
         do
         {
-            Console.Write(" » Ingrese: ");
+            mensaje.ingrese();
             buffer = Console.ReadLine();
             if (!int.TryParse(buffer, out opcion))
             {
                 opcion = 9999;
-                Console.WriteLine("╔═══════════════════════════════════╗");
-                Console.WriteLine("║ »No ingreso una opción correcta « ║");
-                Console.WriteLine("║ »0. Crear su personaje          « ║");
-                Console.WriteLine("║ »1. Generarlo aleatoriamente    « ║");
-                Console.WriteLine("╚═══════════════════════════════════╝");            
+                mensaje.ErrorCrearOGenerarPersonaje();
             }
         } while (opcion < 0 || opcion >1);
 
@@ -149,54 +145,34 @@ internal class Program
         int velocidad = 0;
         int poder = 0;
         int puntos = 25;
+        var mensaje = new Mensajes();
         string? buffer;
             do
             {
                 if (suma > puntos)
                 {
-                Console.WriteLine("╔═══════════════════════════════════════════════╗");
-                Console.WriteLine("║ »La suma de sus habilidades es mayor que 20 « ║");
-                Console.WriteLine("║ »Intentelo de vuelta. «                       ║");
-                Console.WriteLine("╚═══════════════════════════════════════════════╝");  
+                    mensaje.errorAlIngresarLasCaracteristicas();
                 }
-
                 suma = 0;
-                Console.WriteLine("╔═══════════════════════════════════════════════╗");
-                Console.WriteLine("║ »Ingrese las caracteristicas de su personaje« ║");
-                Console.WriteLine("║ »Recordando que la suma entre todas las habi- ║");
-                Console.WriteLine("║  lidades debe ser menor a 25. Otra condición, ║");
-                Console.WriteLine("║  es que la destreza debe ser menor a 5, y las ║");
-                Console.WriteLine("║  demás habilidades deben de ser menor a 10. « ║");
-                Console.WriteLine("╚═══════════════════════════════════════════════╝");
-                
+                mensaje.ingresarCaracteristicas();                
                 do
                 {
-                    Console.WriteLine("╔═══════════════════════════════════╗");
-                    Console.WriteLine($"║ »Le quedan {(puntos-suma).ToString().PadRight(2)} puntos a repartir«  ║");
-                    Console.WriteLine("║ »Ingrese la Destreza:  «          ║");
-                    Console.WriteLine("╚═══════════════════════════════════╝"); 
-
-                    Console.Write(" » Ingrese: ");
+                    mensaje.ingresarDestreza(puntos,suma);
+                    mensaje.ingrese();
                     buffer = Console.ReadLine();
                 } while ( !int.TryParse(buffer,out destreza) || destreza > 5);
                     suma += destreza; 
                 do
                 {
-                    Console.WriteLine("╔═══════════════════════════════════╗");
-                    Console.WriteLine($"║ »Le quedan {(puntos-suma).ToString().PadRight(2)} puntos a repartir«  ║");
-                    Console.WriteLine("║ »Ingrese la Velocidad:  «         ║");
-                    Console.WriteLine("╚═══════════════════════════════════╝"); 
-                    Console.Write(" » Ingrese: ");
+                    mensaje.ingresarVelocidad(puntos,suma); 
+                    mensaje.ingrese();
                     buffer = Console.ReadLine();
                 } while ( !int.TryParse(buffer,out velocidad) || velocidad > 10);
                     suma += velocidad;
                 do
                 {
-                    Console.WriteLine("╔═══════════════════════════════════╗");
-                    Console.WriteLine($"║ »Le quedan {(puntos-suma).ToString().PadRight(2)} puntos a repartir«  ║");
-                    Console.WriteLine("║ »Ingrese la Defensa:  «           ║");
-                    Console.WriteLine("╚═══════════════════════════════════╝"); 
-                    Console.Write(" » Ingrese: ");
+                    mensaje.ingresarDefensa(puntos,suma); 
+                    mensaje.ingrese();
                     buffer = Console.ReadLine();
                 } while ( !int.TryParse(buffer,out defensa) || defensa > 10);
                     suma += defensa;
@@ -204,11 +180,8 @@ internal class Program
                 {    
                     do
                     {
-                        Console.WriteLine("╔═══════════════════════════════════╗");
-                        Console.WriteLine($"║ »Le quedan {(puntos-suma).ToString().PadRight(2)} puntos a repartir«  ║");
-                        Console.WriteLine("║ »Ingrese el Poder:  «             ║");
-                        Console.WriteLine("╚═══════════════════════════════════╝"); 
-                        Console.Write(" » Ingrese: ");
+                        mensaje.ingresarPoder(puntos,suma); 
+                        mensaje.ingrese();                         
                         buffer = Console.ReadLine();
                     } while ( !int.TryParse(buffer,out poder) || poder > 10);
                         suma += poder;
@@ -216,11 +189,8 @@ internal class Program
                     {
                         do
                         {
-                            Console.WriteLine("╔═══════════════════════════════════╗");
-                            Console.WriteLine($"║ »Le quedan {(puntos-suma).ToString().PadRight(2)} puntos a repartir«  ║");
-                            Console.WriteLine("║ »Ingrese la Fuerza:  «            ║");
-                            Console.WriteLine("╚═══════════════════════════════════╝"); 
-                            Console.Write(" » Ingrese: ");
+                            mensaje.ingresarFuerza(puntos,suma); 
+                            mensaje.ingrese();
                             buffer = Console.ReadLine();
                         } while ( !int.TryParse(buffer,out fuerza) || fuerza > 10);
                             suma += fuerza;
@@ -263,29 +233,26 @@ internal class Program
                     {
                         ganador = combateJugador(listaDePersonajes[i+1],listaDePersonajes[i]);
                     }
-                    //debo pedirle al usuario que beneficio quiere tener, debo preguntar si es que el que gano es el PerPrin
-                    //Pero eso es tarea para otro momento
-                    // ganador = recibirBeneficio(ganador,opcion);
                     if (ganador == personajePrincipal )
                     {
                         beneficio = 0;
                         beneficio = preguntarBeneficio();
-                        ganador = recibirBeneficio(ganador,beneficio); // por el momento          
+                        ganador = recibirBeneficio(ganador,beneficio);           
                     }else
                     {
-                        ganador = recibirBeneficio(ganador,random.Next(1,6)); // por el momento
+                        ganador = recibirBeneficio(ganador,random.Next(1,6)); 
+                        mensaje.ganador(ganador);
+                        mensaje.presionaEnter();
                     }
 
                 }else
                 {
                     ganador = combateSimulado(listaDePersonajes[i],listaDePersonajes[i+1]);
-                    //doy las mejoras
                     ganador = recibirBeneficio(ganador,random.Next(1,6));
-
+                    mensaje.ganador(ganador);
+                    mensaje.presionaEnter();
                 }
-                mensaje.ganador(ganador);
-                // Console.WriteLine ("Ganador: "+ganador.Nombre);
-                mensaje.presionaEnter();
+
                 listaGanadores.Add(ganador);
             }
             listaDePersonajes.Clear();
@@ -303,10 +270,6 @@ internal class Program
         var random = new Random(DateTime.Now.Millisecond);
         while (luchador1.Salud >0 && luchador2.Salud >0)
         {
-            // Console.WriteLine("============================");
-            // Console.WriteLine("Salud P1:" + luchador1.Salud);
-            // Console.WriteLine("Salud P2:" + luchador2.Salud);
-            // Console.WriteLine("============================");
             moneda = random.Next(1,3);
             if (moneda == 1)
             {
@@ -356,15 +319,10 @@ internal class Program
         {
             golpePersonajePrincipal = 0;
             golpeContrincante = 0;
-            // Console.WriteLine("============================");
-            // Console.WriteLine("Tu salud:" + PersonajePrincipal.Salud);
-            // Console.WriteLine("Contrincante:" + Contrincante.Salud);
-            // Console.WriteLine("============================");
             mensaje.mostrarSalud(PersonajePrincipal,Contrincante);
             Resultado = elMasCercano();
             if (Resultado == 3)
             {
-                // Console.WriteLine("===Empate!!==");
                 mensaje.Empate();
                 golpePersonajePrincipal = calcularGolpe(PersonajePrincipal,0);
                 golpeContrincante = calcularGolpe(Contrincante,0); 
@@ -372,13 +330,11 @@ internal class Program
             {    
                 if (Resultado == 1)
                 {
-                    // Console.WriteLine("==Tu ganas==");
                     mensaje.tuGanas();
                     golpePersonajePrincipal = calcularGolpe(PersonajePrincipal,10);
                     golpeContrincante = calcularGolpe(Contrincante,0);
                 }else
                 {
-                    // Console.WriteLine("==Pierdes==");
                     mensaje.tuPierdes();
                     golpePersonajePrincipal = calcularGolpe(PersonajePrincipal,0);
                     golpeContrincante = calcularGolpe(Contrincante,10);              
@@ -409,15 +365,10 @@ internal class Program
         int numeroIngresado;
         string? buffer;
         var mensaje = new Mensajes();
-
-        Console.Write("Ingresa » ");
+        mensaje.ingrese();
         buffer = Console.ReadLine();
         while ( !(int.TryParse(buffer, out numeroIngresado)) || (numeroIngresado < 0 || numeroIngresado > 9) )
         {
-            // Console.WriteLine("================================");
-            // Console.WriteLine("Creo que no me has entendido bien");
-            // Console.WriteLine("== Ingrese un número del 0 al 9 ==");
-            // Console.Write("Intentelo de vuelta: ");
             mensaje.malIngresoEnSuerte();
             buffer = Console.ReadLine();
         }
@@ -479,37 +430,38 @@ internal class Program
     }
     private static int preguntarBeneficio(){
         int opcion = 0;
+        var mensaje = new Mensajes();
+        bool condicion;
         string? buffer = "";
         do
         {
-            Console.WriteLine("╔═══════════════════════════════════════╗");
-            Console.WriteLine("║ ¡Has ganado! Ahora elije un beneficio ║");
-            Console.WriteLine("║ » Opción 1: +3 Velocidad              ║");
-            Console.WriteLine("║ » Opción 2: +3 Fuerza                 ║");
-            Console.WriteLine("║ » Opción 3: +3 Poder                  ║");
-            Console.WriteLine("║ » Opción 4: +3 Defensa                ║");
-            Console.WriteLine("║ » Opción 5: +1 Destreza               ║");
-            Console.WriteLine("║ » Opción 6: +20 Salud                 ║");
-            Console.WriteLine("╚═══════════════════════════════════════╝");
-            Console.Write(" » Ingrese: ");
+            mensaje.preguntarPorBeneficio();
+            mensaje.ingrese();
             buffer = Console.ReadLine();
-        } while (!int.TryParse(buffer,out opcion) || opcion < 1 || opcion > 6 );
+            condicion = (!int.TryParse(buffer,out opcion) || opcion < 1 || opcion > 6);
+            if (condicion)
+            {
+                mensaje.IngreseUnaOpcionCorrecta();
+            }
+        } while (condicion );
         return opcion;
     }
 private static int ElegirCantidadPersonajes(){
     int opcion = 1;
+    var mensaje = new Mensajes();
     string? buffer = "";
+    bool condicion;
     do
         {
-            Console.WriteLine("╔═════════════════════════════════════════╗");
-            Console.WriteLine("║ Elija la cantidad de personajes a jugar ║");
-            Console.WriteLine("║ » Opción 1: 4 Personajes                ║");
-            Console.WriteLine("║ » Opción 2: 8 Personajes                ║");
-            Console.WriteLine("║ » Opción 3: 16 Personajes               ║");
-            Console.WriteLine("╚═════════════════════════════════════════╝");
-            Console.Write(" » Ingrese: ");
+            mensaje.elegirCantidadDePersonajes();
+            mensaje.ingrese();
             buffer = Console.ReadLine();
-        } while (!int.TryParse(buffer,out opcion) || opcion < 1 || opcion > 3 );
+            condicion = (!int.TryParse(buffer,out opcion) || opcion < 1 || opcion > 3 );
+            if (condicion)
+            {
+                mensaje.IngreseUnaOpcionCorrecta();
+            }
+        } while (condicion);
     switch (opcion)
     {
         case 1:

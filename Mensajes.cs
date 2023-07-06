@@ -124,10 +124,13 @@ public class Mensajes{
  ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄",1);
     Console.WriteLine("");
     tipeo("»»» ¿Desea volver a jugar? »»» 1:Si Cualquier tecla: No",20);
-    tipeo("»»» Ingrese: ",20);
+    ingrese();
 
     }
-    
+    public void preguntarMismosPersonjaes(){
+        tipeo("»»» ¿Mismos personajes?",20);
+        tipeo("1 = Si , 0 = No",20);
+    }
     public void presionaEnter(){
         Console.WriteLine("Presione ENTER para continuar...");
         Console.ReadLine();
@@ -203,6 +206,116 @@ public class Mensajes{
             }
         }
     }
+
+    public void preguntarPorBeneficio(){
+            Console.WriteLine("╔═══════════════════════════════════════╗");
+            Console.WriteLine("║ ¡Has ganado! Ahora elije un beneficio ║");
+            Console.WriteLine("║ » Opción 1: +3 Velocidad              ║");
+            Console.WriteLine("║ » Opción 2: +3 Fuerza                 ║");
+            Console.WriteLine("║ » Opción 3: +3 Poder                  ║");
+            Console.WriteLine("║ » Opción 4: +3 Defensa                ║");
+            Console.WriteLine("║ » Opción 5: +1 Destreza               ║");
+            Console.WriteLine("║ » Opción 6: +20 Salud                 ║");
+            Console.WriteLine("╚═══════════════════════════════════════╝");
+    }
+    public void elegirCantidadDePersonajes(){
+            Console.WriteLine("╔═════════════════════════════════════════╗");
+            Console.WriteLine("║ Elija la cantidad de personajes a jugar ║");
+            Console.WriteLine("║ » Opción 1: 4 Personajes                ║");
+            Console.WriteLine("║ » Opción 2: 8 Personajes                ║");
+            Console.WriteLine("║ » Opción 3: 16 Personajes               ║");
+            Console.WriteLine("╚═════════════════════════════════════════╝");
+    }
+    public void ingreseNombre(){
+            Console.WriteLine("╔═══════════════════════════════════╗");
+            Console.WriteLine("║ »Ingrese su nombre por favor(10)« ║");
+            Console.WriteLine("╚═══════════════════════════════════╝");
+    }
+    public void ingreseApodo(){
+            Console.WriteLine("╔═══════════════════════════════════╗");
+            Console.WriteLine("║ »Ingrese un apodo por favor(30) « ║");
+            Console.WriteLine("╚═══════════════════════════════════╝");
+    }
+    public void ingreseFecha(){
+            Console.WriteLine("╔═══════════════════════════════════╗");
+            Console.WriteLine("║ »Ingrese su fecha de Nacimiento « ║");
+            Console.WriteLine("╚═══════════════════════════════════╝");
+    }
+    public void ingreseDia(){
+            Console.Write(" » Día: ");
+    }
+    public void ingreseMes(){
+            Console.Write(" » Mes: ");
+    }
+    public void ingreseAnio(){
+            Console.Write(" » Año: ");
+    }
+    public void CrearOGenerarPersonaje(){
+            Console.WriteLine("╔════════════════════════════════╗");
+            Console.WriteLine("║ »Hola nuevo jugador, desea:  « ║");
+            Console.WriteLine("║ »0. Crear su personaje       « ║");
+            Console.WriteLine("║ »1. Generarlo aleatoriamente « ║");
+            Console.WriteLine("╚════════════════════════════════╝");
+    }
+    public void ErrorCrearOGenerarPersonaje(){
+            Console.WriteLine("╔═══════════════════════════════════╗");
+            Console.WriteLine("║ »No ingreso una opción correcta « ║");
+            Console.WriteLine("║ »0. Crear su personaje          « ║");
+            Console.WriteLine("║ »1. Generarlo aleatoriamente    « ║");
+            Console.WriteLine("╚═══════════════════════════════════╝"); 
+    }
+    public void ingrese(){
+            Console.Write(" » Ingrese: ");
+    }
+    public void IngreseUnaOpcionCorrecta(){
+        Console.WriteLine("»»» Ingrese una opción correcta por favor");
+    }
+    public void errorAlIngresarLasCaracteristicas(){
+            Console.WriteLine("╔═══════════════════════════════════════════════╗");
+            Console.WriteLine("║ »La suma de sus habilidades es mayor que 25 « ║");
+            Console.WriteLine("║ »Intentelo de vuelta. «                       ║");
+            Console.WriteLine("╚═══════════════════════════════════════════════╝");  
+    }
+    public void ingresarCaracteristicas(){
+        Console.WriteLine("╔═══════════════════════════════════════════════╗");
+        Console.WriteLine("║ »Ingrese las caracteristicas de su personaje« ║");
+        Console.WriteLine("║ »Recordando que la suma entre todas las habi- ║");
+        Console.WriteLine("║  lidades debe ser menor a 25. Otra condición, ║");
+        Console.WriteLine("║  es que la destreza debe ser menor a 5, y las ║");
+        Console.WriteLine("║  demás habilidades deben de ser menor a 10. « ║");
+        Console.WriteLine("╚═══════════════════════════════════════════════╝");
+    }
+    public void ingresarDestreza(int puntos, int suma){
+        Console.WriteLine("╔═══════════════════════════════════╗");
+        Console.WriteLine($"║ »Le quedan {(puntos-suma).ToString().PadRight(2)} puntos a repartir«  ║");
+        Console.WriteLine("║ »Ingrese la Destreza:  «          ║");
+        Console.WriteLine("╚═══════════════════════════════════╝"); 
+
+    }
+    public void ingresarVelocidad(int puntos, int suma){
+        Console.WriteLine("╔═══════════════════════════════════╗");
+        Console.WriteLine($"║ »Le quedan {(puntos-suma).ToString().PadRight(2)} puntos a repartir«  ║");
+        Console.WriteLine("║ »Ingrese la Velocidad:  «         ║");
+        Console.WriteLine("╚═══════════════════════════════════╝");
+    }
+    public void ingresarDefensa(int puntos, int suma){
+        Console.WriteLine("╔═══════════════════════════════════╗");
+        Console.WriteLine($"║ »Le quedan {(puntos-suma).ToString().PadRight(2)} puntos a repartir«  ║");
+        Console.WriteLine("║ »Ingrese la Defensa:  «           ║");
+        Console.WriteLine("╚═══════════════════════════════════╝"); 
+    }
+    public void ingresarPoder(int puntos, int suma){
+        Console.WriteLine("╔═══════════════════════════════════╗");
+        Console.WriteLine($"║ »Le quedan {(puntos-suma).ToString().PadRight(2)} puntos a repartir«  ║");
+        Console.WriteLine("║ »Ingrese el Poder:  «             ║");
+        Console.WriteLine("╚═══════════════════════════════════╝"); 
+    }
+    public void ingresarFuerza(int puntos, int suma){
+        Console.WriteLine("╔═══════════════════════════════════╗");
+        Console.WriteLine($"║ »Le quedan {(puntos-suma).ToString().PadRight(2)} puntos a repartir«  ║");
+        Console.WriteLine("║ »Ingrese la Fuerza:  «            ║");
+        Console.WriteLine("╚═══════════════════════════════════╝"); 
+    }    
     public string tipeo(string linea,int rapidez){
             var tipeo = "";
             foreach (var caracteres in linea)
