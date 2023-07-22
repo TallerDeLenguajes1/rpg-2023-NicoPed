@@ -46,7 +46,7 @@ public class Mensajes{
         Console.WriteLine("║      Tu conticante hará lo mismo      ║");
         Console.WriteLine("║   Y el que se acerque más al número   ║");
         Console.WriteLine("║   pensado por el mago. Se le dara     ║");
-        Console.WriteLine("║      +10 de fuerza momentanea«        ║");
+        Console.WriteLine("║       +5 de fuerza momentanea«        ║");
         Console.WriteLine("║    Muchas suerte... La necesitaras    ║");
         Console.WriteLine("║ »PD:El mago además de hechizos lanza  ║");
         Console.WriteLine("║  chistes bastante malos. Solo riete « ║");
@@ -128,7 +128,7 @@ public class Mensajes{
 
     }
     public void preguntarMismosPersonjaes(){
-        tipeo("»»» ¿Mismos personajes?",20);
+        tipeo("»»» ¿Mismos contricantes?",20);
         tipeo("1 = Si , 0 = No",20);
     }
     public void presionaEnter(){
@@ -143,9 +143,25 @@ public class Mensajes{
         Console.WriteLine("╚────────────────────────────────────────────────╝");
         presionaEnter();  
         Console.WriteLine(empty.PadRight(22)+"WINNER");
+        // 48 24 y 24.... 
+        string? nombre = ganador.Nombre;
+        int longitudNombre = nombre.Length ;
+        string? Apodo = ganador.Apodo;
+        int longitudApodo = Apodo.Length ;
+        int longitudEspacioderechaNombre = 24;
+        int longitudEspacioderechaApodo = 24;
+        if (longitudNombre % 2 != 0)
+        {
+            longitudEspacioderechaNombre = 23;
+        }
+        if (longitudApodo%2 == 1)
+        {
+            longitudEspacioderechaApodo = 23;
+        }
+        
         Console.WriteLine("╔════════════════════════════════════════════════╗");
-        Console.WriteLine("│"+empty.PadRight(18)+""+ganador.Nombre.PadRight(30)+"│");
-        Console.WriteLine("│"+empty.PadRight(18)+""+ganador.Apodo.PadRight(30)+"│");  
+        Console.WriteLine("│"+empty.PadRight(24 - longitudNombre/2)+""+ganador.Nombre+""+empty.PadRight(longitudEspacioderechaNombre- longitudNombre/2)+"│");
+        Console.WriteLine("│"+empty.PadRight(24 - longitudApodo/2)+""+ganador.Apodo+""+empty.PadRight(longitudEspacioderechaApodo - longitudApodo/2)+"│");  
         Console.WriteLine("╚════════════════════════════════════════════════╝");       
         presionaEnter();
         Console.WriteLine("╔────────────────────────────────────────────────╗");

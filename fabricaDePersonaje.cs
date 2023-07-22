@@ -47,10 +47,10 @@ private string [ , ] nombresHashira = {{"Tomioka","Respiración del Agua"},{"Uzu
             nuevoDemonio.Fecha_nac = new DateTime(1000,12,5);
         }
         nuevoDemonio.Edad = nuevoDemonio.SacarEdad();
-        nuevoDemonio.Velocidad = random.Next(2,7);
+        nuevoDemonio.Velocidad = random.Next(3,7);
         nuevoDemonio.Destreza = random.Next(1,3);
         nuevoDemonio.Fuerza = random.Next(2,7);
-        nuevoDemonio.Poder = random.Next(2,6);
+        nuevoDemonio.Poder = random.Next(3,6);
         nuevoDemonio.Defensa = random.Next(2,7);
         nuevoDemonio.Salud = 100;
         return nuevoDemonio;
@@ -73,11 +73,11 @@ private string [ , ] nombresHashira = {{"Tomioka","Respiración del Agua"},{"Uzu
             nuevoCazador.Fecha_nac = new DateTime(1980,12,5);
         }
         nuevoCazador.Edad = nuevoCazador.SacarEdad();
-        nuevoCazador.Velocidad = random.Next(3,6);
+        nuevoCazador.Velocidad = random.Next(4,7);
         nuevoCazador.Destreza = random.Next(1,3);
         nuevoCazador.Fuerza = random.Next(3,6);
-        nuevoCazador.Poder = random.Next(2,5);
-        nuevoCazador.Defensa = random.Next(3,6);
+        nuevoCazador.Poder = random.Next(3,6);
+        nuevoCazador.Defensa = random.Next(4,6);
         nuevoCazador.Salud = 100;
         return nuevoCazador;
     }

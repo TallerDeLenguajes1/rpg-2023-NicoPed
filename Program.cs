@@ -33,6 +33,7 @@ internal class Program
         }
         personajePrincipal = ingresoUsuario();
         mensaje.mostrarDatos(personajePrincipal);
+        mensaje.presionaEnter();
         listaDePersonajes.Add(personajePrincipal);
         if (listaDePersonajes.Count > 0)
         {
@@ -111,7 +112,6 @@ internal class Program
             mensaje.ingreseAnio();
             bufferfechaDeNac = Console.ReadLine();
             stringFechaDeNac = string.Concat(stringFechaDeNac,"/",bufferfechaDeNac);
-            Console.WriteLine(stringFechaDeNac);
         } while (!DateTime.TryParse(stringFechaDeNac, out fecha_nac) || fecha_nac > DateTime.Today); // nombre.any se fija si en todo el arreglo todos son caracteres
        
         string? buffer;
@@ -273,12 +273,12 @@ internal class Program
             moneda = random.Next(1,3);
             if (moneda == 1)
             {
-                golpeP1 = calcularGolpe(luchador1,10);
+                golpeP1 = calcularGolpe(luchador1,5);
                 golpeP2 = calcularGolpe(luchador2,0);
             }else
             {
                 golpeP1 = calcularGolpe(luchador1,0);
-                golpeP2 = calcularGolpe(luchador2,10);              
+                golpeP2 = calcularGolpe(luchador2,5);              
             }
             luchador2.Salud -= golpeP1;
             if (luchador2.Salud > 0)
@@ -331,13 +331,13 @@ internal class Program
                 if (Resultado == 1)
                 {
                     mensaje.tuGanas();
-                    golpePersonajePrincipal = calcularGolpe(PersonajePrincipal,10);
+                    golpePersonajePrincipal = calcularGolpe(PersonajePrincipal,5);
                     golpeContrincante = calcularGolpe(Contrincante,0);
                 }else
                 {
                     mensaje.tuPierdes();
                     golpePersonajePrincipal = calcularGolpe(PersonajePrincipal,0);
-                    golpeContrincante = calcularGolpe(Contrincante,10);              
+                    golpeContrincante = calcularGolpe(Contrincante,5);              
                 }
             }
             mensaje.presionaEnter();
@@ -376,7 +376,7 @@ internal class Program
         numeroDelMago = random.Next(0,10);
         if (random.Next(0,2) == 1)
         {
-            mensaje.contarChisteMalo();
+            // mensaje.contarChisteMalo();
         }
         mensaje.suerte(numeroIngresado,numeroDelMago,numeroContrincante);
         if (distanciaEntreNumeros(numeroDelMago, numeroContrincante) ==  distanciaEntreNumeros(numeroDelMago,numeroIngresado))
