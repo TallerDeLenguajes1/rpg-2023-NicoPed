@@ -127,7 +127,7 @@ public class Mensajes{
     ingrese();
 
     }
-    public void preguntarMismosPersonjaes(){
+    public void preguntarMismosPersonajes(){
         tipeo("»»» ¿Mismos contricantes?",20);
         tipeo("1 = Si , 0 = No",20);
     }

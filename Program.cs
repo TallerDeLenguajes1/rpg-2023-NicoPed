@@ -5,7 +5,7 @@ internal class Program
     private static void Main(string[] args)
     {
         var mensaje = new Mensajes();
-        int CANTIDAD_DE_PERSONAJES = 1; //podes pedir que te muestren o directamente vos poner lo que vos quuieras
+        int CANTIDAD_DE_PERSONAJES = 1; 
         string archivoJson = "personajes.json";
         int opcionFinal = 0;
         string? buffer;
@@ -29,7 +29,7 @@ internal class Program
         }
         else
         {
-            listaDePersonajes =AyudaJson.LeerPersonajes(archivoJson);
+            listaDePersonajes = AyudaJson.LeerPersonajes(archivoJson);
         }
         personajePrincipal = ingresoUsuario();
         mensaje.mostrarDatos(personajePrincipal);
@@ -37,7 +37,7 @@ internal class Program
         listaDePersonajes.Add(personajePrincipal);
         if (listaDePersonajes.Count > 0)
         {
-            // mensaje.mostrarLista(listaDePersonajes);
+            
             var ganador = new Personaje();
             ganador = Juego(listaDePersonajes,personajePrincipal);
             mensaje.mensajeFinal(ganador);
@@ -60,7 +60,7 @@ internal class Program
             bool condicion;
             do
             {
-                mensaje.preguntarMismosPersonjaes();
+                mensaje.preguntarMismosPersonajes();
                 mensaje.ingrese();
                 buffer = Console.ReadLine();
                 condicion = (!int.TryParse(buffer,out respMismosPersonajes) || (respMismosPersonajes != 1 && respMismosPersonajes != 0));
@@ -77,6 +77,34 @@ internal class Program
         }
     } while (opcionFinal != 0);
     }
+    private static int ElegirCantidadPersonajes(){
+    int opcion = 1;
+    var mensaje = new Mensajes();
+    string? buffer = "";
+    bool condicion;
+    do
+        {
+            mensaje.elegirCantidadDePersonajes();
+            mensaje.ingrese();
+            buffer = Console.ReadLine();
+            condicion = (!int.TryParse(buffer,out opcion) || opcion < 1 || opcion > 3 );
+            if (condicion)
+            {
+                mensaje.IngreseUnaOpcionCorrecta();
+            }
+        } while (condicion);
+    switch (opcion)
+    {
+        case 1:
+        return 3; 
+        case 2: 
+            return 7;
+        case 3: 
+            return 15;
+        default:
+        return 1;
+    }   
+}
     private static Personaje ingresoUsuario(){
         var usuario = new Personaje ();
         int opcion = 0;
@@ -297,16 +325,6 @@ internal class Program
         }
 
     }
-    private static int calcularGolpe(Personaje luchador, int fuerzaExtra){
-        var random = new Random(DateTime.Now.Millisecond);
-        int danioProvocado = 0;
-        int Ataque = luchador.Destreza * (luchador.Fuerza + fuerzaExtra) * luchador.Poder;
-        int Efectividad = random.Next(0,101);
-        int Defensa = luchador.Defensa * luchador.Velocidad;
-        int ConstanteDeAjuste = 500; 
-        danioProvocado = ((Ataque * Efectividad)- Defensa)/ConstanteDeAjuste;
-        return danioProvocado;
-    }
     private static Personaje combateJugador(Personaje PersonajePrincipal, Personaje Contrincante){
         int auxSaludPersPrinc = PersonajePrincipal.Salud;
         int auxSaludContricante = Contrincante.Salud;
@@ -358,6 +376,16 @@ internal class Program
             return PersonajePrincipal;
         }
     }
+    private static int calcularGolpe(Personaje luchador, int fuerzaExtra){
+        var random = new Random(DateTime.Now.Millisecond);
+        int danioProvocado = 0;
+        int Ataque = luchador.Destreza * (luchador.Fuerza + fuerzaExtra) * luchador.Poder;
+        int Efectividad = random.Next(0,101);
+        int Defensa = luchador.Defensa * luchador.Velocidad;
+        int ConstanteDeAjuste = 500; 
+        danioProvocado = ((Ataque * Efectividad)- Defensa)/ConstanteDeAjuste;
+        return danioProvocado;
+    } 
     private static int elMasCercano(){
         var random = new Random(DateTime.Now.Millisecond);
         int numeroContrincante;
@@ -401,6 +429,24 @@ internal class Program
         }
         return distancia;
     }
+     private static int preguntarBeneficio(){
+        int opcion = 0;
+        var mensaje = new Mensajes();
+        bool condicion;
+        string? buffer = "";
+        do
+        {
+            mensaje.preguntarPorBeneficio();
+            mensaje.ingrese();
+            buffer = Console.ReadLine();
+            condicion = (!int.TryParse(buffer,out opcion) || opcion < 1 || opcion > 6);
+            if (condicion)
+            {
+                mensaje.IngreseUnaOpcionCorrecta();
+            }
+        } while (condicion );
+        return opcion;
+    }
     private static Personaje recibirBeneficio(Personaje Vencedor, int opcion){
         switch (opcion)
         {
@@ -428,50 +474,5 @@ internal class Program
         }
         return Vencedor;
     }
-    private static int preguntarBeneficio(){
-        int opcion = 0;
-        var mensaje = new Mensajes();
-        bool condicion;
-        string? buffer = "";
-        do
-        {
-            mensaje.preguntarPorBeneficio();
-            mensaje.ingrese();
-            buffer = Console.ReadLine();
-            condicion = (!int.TryParse(buffer,out opcion) || opcion < 1 || opcion > 6);
-            if (condicion)
-            {
-                mensaje.IngreseUnaOpcionCorrecta();
-            }
-        } while (condicion );
-        return opcion;
-    }
-private static int ElegirCantidadPersonajes(){
-    int opcion = 1;
-    var mensaje = new Mensajes();
-    string? buffer = "";
-    bool condicion;
-    do
-        {
-            mensaje.elegirCantidadDePersonajes();
-            mensaje.ingrese();
-            buffer = Console.ReadLine();
-            condicion = (!int.TryParse(buffer,out opcion) || opcion < 1 || opcion > 3 );
-            if (condicion)
-            {
-                mensaje.IngreseUnaOpcionCorrecta();
-            }
-        } while (condicion);
-    switch (opcion)
-    {
-        case 1:
-        return 3; 
-        case 2: 
-            return 7;
-        case 3: 
-            return 15;
-        default:
-        return 1;
-    }   
-}
+
 }
