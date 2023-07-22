@@ -1,7 +1,7 @@
 namespace Personajes;
 
 public class fabricaDePersonaje{
-private string [ , ] nombresDemonios = {{"Enmu","Luna Inferior Uno"},{"Rokuro","Luna Inferior Dos"},{"Wakuraba","Luna Inferior Tres"},{"Mukago","Luna Inferior Cuatro"},{"Rui","Luna Inferior Tres"}};
+private string [ , ] nombresDemonios = {{"Enmu","Luna Inferior Uno"},{"Rokuro","Luna Inferior Dos"},{"Wakuraba","Luna Inferior Tres"},{"Mukago","Luna Inferior Cuatro"},{"Rui","Luna Inferior cinco"}};
 private string [ , ] nombresCrecientes = {{"Gyokko","Luna Superior Cinco"},{"Nakime","Luna Superior Cuatro"},{"Akaza","Luna Superior Tres"},{"Doma","Luna Superior Dos"},{"Kokushibo","Luna Superior Uno"}};
 private string [ , ] nombresCazadores = {{"Zenitsu","Respiración del Rayo"},{"Tanjiro","Respiración Solar"},{"Inosuke","Respiración de la Bestia"},{"Kanao","Respiración De La Mariposa"},{"Genya","Come Demonios"}};
 private string [ , ] nombresHashira = {{"Tomioka","Respiración del Agua"},{"Uzui","Respiración del Sonido"},{"Shinobu","Respiración de la Mariposa"},{"Muichiro","Respiración De La neblina"},{"Mitsuri","Respiración Del Amor"}};
@@ -75,7 +75,7 @@ private string [ , ] nombresHashira = {{"Tomioka","Respiración del Agua"},{"Uzu
         nuevoCazador.Edad = nuevoCazador.SacarEdad();
         nuevoCazador.Velocidad = random.Next(4,7);
         nuevoCazador.Destreza = random.Next(1,3);
-        nuevoCazador.Fuerza = random.Next(3,6);
+        nuevoCazador.Fuerza = random.Next(3,7);
         nuevoCazador.Poder = random.Next(3,6);
         nuevoCazador.Defensa = random.Next(4,6);
         nuevoCazador.Salud = 100;

@@ -98,7 +98,7 @@ internal class Program
             mensaje.ingreseApodo();
             mensaje.ingrese();
             apodo = Console.ReadLine();
-        } while ( string.IsNullOrEmpty(apodo) || apodo.Length >30 || apodo.Any(c => !char.IsLetterOrDigit(c)) ); // apodo.any se fija si en todo el arreglo todos son caracteres
+        } while ( string.IsNullOrEmpty(apodo) || apodo.Length >30 || apodo.Any(c => !char.IsLetterOrDigit(c) && !char.IsWhiteSpace(c)) ); // apodo.any se fija si en todo el arreglo todos son caracteres
          do
         {
             stringFechaDeNac = "";
