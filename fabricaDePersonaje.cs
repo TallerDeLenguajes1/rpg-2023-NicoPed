@@ -1,5 +1,5 @@
 namespace Personajes;
-
+// asociarle un número para lograr distinguirlos valor random 001 a 999
 public class fabricaDePersonaje{
 private string [ , ] nombresDemonios = {{"Enmu","Luna Inferior Uno"},{"Rokuro","Luna Inferior Dos"},{"Wakuraba","Luna Inferior Tres"},{"Mukago","Luna Inferior Cuatro"},{"Rui","Luna Inferior cinco"}};
 private string [ , ] nombresCrecientes = {{"Gyokko","Luna Superior Cinco"},{"Nakime","Luna Superior Cuatro"},{"Akaza","Luna Superior Tres"},{"Doma","Luna Superior Dos"},{"Kokushibo","Luna Superior Uno"}};

@@ -61,24 +61,34 @@ public class Mensajes{
         Console.Write("Intentelo de vuelta » ");
 
     }
+        // public void mostrarSalud(Personaje luchador1, Personaje luchador2){
+        // Console.WriteLine("");
+        // Console.WriteLine (@"╔═══════════════════════════════╗");
+        // Console.WriteLine (@"║                               ║");
+        // Console.WriteLine (@$"║ Tu salud: {luchador1.Salud.ToString().PadRight(19)} ║");
+        // Console.WriteLine (@$"║ Salud del Contricante: {luchador2.Salud.ToString().PadRight(6)} ║");
+        // Console.WriteLine (@"║                               ║");
+        // Console.WriteLine (@"╚═══════════════════════════════╝");
+
+        // }
         public void mostrarSalud(Personaje luchador1, Personaje luchador2){
         Console.WriteLine("");
-        Console.WriteLine (@"╔═══════════════════════════════╗");
-        Console.WriteLine (@"║                               ║");
-        Console.WriteLine (@$"║ Tu salud: {luchador1.Salud.ToString().PadRight(19)} ║");
-        Console.WriteLine (@$"║ Salud del Contricante: {luchador2.Salud.ToString().PadRight(6)} ║");
-        Console.WriteLine (@"║                               ║");
-        Console.WriteLine (@"╚═══════════════════════════════╝");
+        Console.WriteLine (@"╔════════════════════════════════╗");
+        Console.WriteLine (@"║             Salud:             ║");
+        Console.WriteLine (@$"║ {luchador1.Nombre.PadRight(15)}: {luchador1.Salud.ToString().PadRight(14)} ║");
+        Console.WriteLine (@$"║ {luchador2.Nombre.PadRight(15)}: {luchador2.Salud.ToString().PadRight(14)} ║");
+        Console.WriteLine (@"║                                ║");
+        Console.WriteLine (@"╚════════════════════════════════╝");
 
         }
-        public void mostrarDanio(int danioProvocado, int danioRecibido){
+        public void mostrarDanio(Personaje luchador1, Personaje luchador2,int danioLuchador1, int danioLuchador2){
         Console.WriteLine("");
-        Console.WriteLine (@"╔═══════════════════════════════╗");
-        Console.WriteLine (@"║                               ║");
-        Console.WriteLine (@$"║ Daño Provocado: {danioProvocado.ToString().PadRight(13)} ║");
-        Console.WriteLine (@$"║ Recibiste daño: {danioRecibido.ToString().PadRight(13)} ║");
-        Console.WriteLine (@"║                               ║");
-        Console.WriteLine (@"╚═══════════════════════════════╝");
+        Console.WriteLine (@"╔════════════════════════════════╗");
+        Console.WriteLine (@"║ Cantidad de daño provocado por ║");
+        Console.WriteLine (@$"║{luchador1.Nombre.PadRight(15)}: {danioLuchador1.ToString().PadRight(14)} ║");
+        Console.WriteLine (@$"║{luchador2.Nombre.PadRight(15)}: {danioLuchador2.ToString().PadRight(14)} ║");
+        Console.WriteLine (@"║                                ║");
+        Console.WriteLine (@"╚════════════════════════════════╝");
 
         }
     public void mostrarLista(List<Personaje> listaDePersonajes){
@@ -332,6 +342,33 @@ public class Mensajes{
         Console.WriteLine("║ »Ingrese la Fuerza:  «            ║");
         Console.WriteLine("╚═══════════════════════════════════╝"); 
     }    
+    
+    public void Octavos(){
+        Console.WriteLine("╔──────────────────────────╗");
+        Console.WriteLine("│     OCTAVOS DE FINAL     │");
+        Console.WriteLine("╚──────────────────────────╝");
+    }
+    public void Cuartos(){
+        Console.WriteLine("╔──────────────────────────╗");
+        Console.WriteLine("│     CUARTOS DE FINAL     │");
+        Console.WriteLine("╚──────────────────────────╝");
+    }
+    public void Semis(){
+        Console.WriteLine("╔───────────────────────╗");
+        Console.WriteLine("│     SEMIS-FINALES     │");
+        Console.WriteLine("╚───────────────────────╝");
+    }
+    public void Final(){
+        Console.WriteLine("╔───────────────────────╗");
+        Console.WriteLine("│         FINAL         │");
+        Console.WriteLine("╚───────────────────────╝");
+    }
+    public void VerOSaltarPelea(){
+        Console.WriteLine("╔════════════════════╗");
+        Console.WriteLine("║  0. Ver Pelea      ║");
+        Console.WriteLine("║  1. Saltar Pelea   ║");
+        Console.WriteLine("╚════════════════════╝");
+    }
     public string tipeo(string linea,int rapidez){
             var tipeo = "";
             foreach (var caracteres in linea)
@@ -342,4 +379,5 @@ public class Mensajes{
             Console.WriteLine();
         return tipeo;
     }
+
 }

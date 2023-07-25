@@ -1,5 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using Personajes;
+//Sacar todos los comentarios, ver lo del try-catch(si falla la API)
+// Mostrar una opcion para ver pelea o continuar... y mostrar cuartes semis final...
 internal class Program
 {
     private static void Main(string[] args)
@@ -37,7 +39,7 @@ internal class Program
         listaDePersonajes.Add(personajePrincipal);
         if (listaDePersonajes.Count > 0)
         {
-            
+            // Puedo Crear un nuevo campo que me diga si es o no el personaje principal
             var ganador = new Personaje();
             ganador = Juego(listaDePersonajes,personajePrincipal);
             mensaje.mensajeFinal(ganador);
@@ -57,19 +59,7 @@ internal class Program
         int respMismosPersonajes = 0;
         if (opcionFinal == 1)
         {
-            bool condicion;
-            do
-            {
-                mensaje.preguntarMismosPersonajes();
-                mensaje.ingrese();
-                buffer = Console.ReadLine();
-                condicion = (!int.TryParse(buffer,out respMismosPersonajes) || (respMismosPersonajes != 1 && respMismosPersonajes != 0));
-                if (condicion)
-                {
-                    mensaje.IngreseUnaOpcionCorrecta();
-                }
-            } while (condicion);
-
+            respMismosPersonajes = preguntarMismosPersonajes();
         }
         if (respMismosPersonajes == 0)
         {
@@ -96,7 +86,7 @@ internal class Program
     switch (opcion)
     {
         case 1:
-        return 3; 
+        return 3; // 3 ya que el personaje principal despues se añade llegando a los 4 personajes
         case 2: 
             return 7;
         case 3: 
@@ -250,7 +240,6 @@ internal class Program
             for (int i = 0; i < listaDePersonajes.Count; i+=2)
             {
                 mensaje.VS(listaDePersonajes[i],listaDePersonajes[i+1]);
-                // Console.WriteLine($"\n{listaDePersonajes[i].Nombre} VS {listaDePersonajes[i+1].Nombre}");
                 if (listaDePersonajes[i] == personajePrincipal || listaDePersonajes[i+1] == personajePrincipal) // despues se cambiara por si es personaje Principal
                 {
                     mensaje.reglasDelMinijuegoSuerte();
@@ -275,12 +264,13 @@ internal class Program
 
                 }else
                 {
-                    ganador = combateSimulado(listaDePersonajes[i],listaDePersonajes[i+1]);
+                    int decision = preguntarVerOSaltarPelea();
+                    ganador = combateSimulado(listaDePersonajes[i],listaDePersonajes[i+1],decision);
                     ganador = recibirBeneficio(ganador,random.Next(1,6));
                     mensaje.ganador(ganador);
                     mensaje.presionaEnter();
                 }
-
+                // si logras entender como borrar en una misma lista sin romperla queda mejor
                 listaGanadores.Add(ganador);
             }
             listaDePersonajes.Clear();
@@ -289,29 +279,39 @@ internal class Program
         }
         return listaDePersonajes[0]; 
     }
-    private static Personaje combateSimulado(Personaje luchador1, Personaje luchador2){
+    private static Personaje combateSimulado(Personaje luchador1, Personaje luchador2, int verOSaltar){
         int golpeP1;
         int golpeP2;
         int moneda;
         int auxSaludLuch1 = luchador1.Salud;
         int auxSaludLuch2 = luchador2.Salud;
+        var mensajes = new Mensajes();
         var random = new Random(DateTime.Now.Millisecond);
         while (luchador1.Salud >0 && luchador2.Salud >0)
         {
+            if (verOSaltar == 1)
+            {   
+                mensajes.mostrarSalud(luchador1,luchador2);
+            }
             moneda = random.Next(1,3);
             if (moneda == 1)
             {
-                golpeP1 = calcularGolpe(luchador1,5);
-                golpeP2 = calcularGolpe(luchador2,0);
+                golpeP1 = calcularGolpe(luchador1,luchador2,5);
+                golpeP2 = calcularGolpe(luchador2,luchador1,0);
             }else
             {
-                golpeP1 = calcularGolpe(luchador1,0);
-                golpeP2 = calcularGolpe(luchador2,5);              
+                golpeP1 = calcularGolpe(luchador1,luchador2,0);
+                golpeP2 = calcularGolpe(luchador2,luchador1,5);              
             }
             luchador2.Salud -= golpeP1;
             if (luchador2.Salud > 0)
             {
                 luchador1.Salud -= golpeP2;
+            }
+            if (verOSaltar == 1)
+            {
+                mensajes.mostrarDanio(luchador1,luchador2,golpeP1,golpeP2);
+                mensajes.presionaEnter();
             }
         }
         if (luchador1.Salud <= 0 ){
@@ -342,20 +342,20 @@ internal class Program
             if (Resultado == 3)
             {
                 mensaje.Empate();
-                golpePersonajePrincipal = calcularGolpe(PersonajePrincipal,0);
-                golpeContrincante = calcularGolpe(Contrincante,0); 
+                golpePersonajePrincipal = calcularGolpe(PersonajePrincipal,Contrincante,0);
+                golpeContrincante = calcularGolpe(Contrincante,PersonajePrincipal,0); 
             }else
             {    
                 if (Resultado == 1)
                 {
                     mensaje.tuGanas();
-                    golpePersonajePrincipal = calcularGolpe(PersonajePrincipal,5);
-                    golpeContrincante = calcularGolpe(Contrincante,0);
+                    golpePersonajePrincipal = calcularGolpe(PersonajePrincipal,Contrincante,5);
+                    golpeContrincante = calcularGolpe(Contrincante,PersonajePrincipal,0);
                 }else
                 {
                     mensaje.tuPierdes();
-                    golpePersonajePrincipal = calcularGolpe(PersonajePrincipal,0);
-                    golpeContrincante = calcularGolpe(Contrincante,5);              
+                    golpePersonajePrincipal = calcularGolpe(PersonajePrincipal,Contrincante,0);
+                    golpeContrincante = calcularGolpe(Contrincante,PersonajePrincipal,5);              
                 }
             }
             mensaje.presionaEnter();
@@ -364,7 +364,7 @@ internal class Program
             {
                 PersonajePrincipal.Salud -= golpeContrincante;
             }
-            mensaje.mostrarDanio(golpePersonajePrincipal,golpeContrincante);
+            mensaje.mostrarDanio(PersonajePrincipal,Contrincante,golpePersonajePrincipal,golpeContrincante);
         }
         if (PersonajePrincipal.Salud <= 0 ){
             Contrincante.Salud = auxSaludContricante;
@@ -376,12 +376,13 @@ internal class Program
             return PersonajePrincipal;
         }
     }
-    private static int calcularGolpe(Personaje luchador, int fuerzaExtra){
+    //Tenes que pasar los dos jugadores!!!!! la defensa es del otro luchador...
+    private static int calcularGolpe(Personaje luchadorQueGolpea, Personaje luchadorQueDefiende,int fuerzaExtra){
         var random = new Random(DateTime.Now.Millisecond);
         int danioProvocado = 0;
-        int Ataque = luchador.Destreza * (luchador.Fuerza + fuerzaExtra) * luchador.Poder;
+        int Ataque = luchadorQueGolpea.Destreza * (luchadorQueGolpea.Fuerza + fuerzaExtra) * luchadorQueGolpea.Poder;
         int Efectividad = random.Next(0,101);
-        int Defensa = luchador.Defensa * luchador.Velocidad;
+        int Defensa = luchadorQueDefiende.Defensa * luchadorQueDefiende.Velocidad;  
         int ConstanteDeAjuste = 500; 
         danioProvocado = ((Ataque * Efectividad)- Defensa)/ConstanteDeAjuste;
         return danioProvocado;
@@ -474,5 +475,40 @@ internal class Program
         }
         return Vencedor;
     }
-
+    private static int preguntarVerOSaltarPelea(){
+        var mensaje = new Mensajes();
+        string? buffer;
+        int decision = 0; 
+        bool condicion;
+        do
+        {
+            mensaje.VerOSaltarPelea();
+            mensaje.ingrese();
+            buffer = Console.ReadLine();
+            condicion = (!int.TryParse(buffer,out decision) || (decision != 1 && decision != 0));
+            if (condicion)
+            {
+                mensaje.IngreseUnaOpcionCorrecta();
+            }
+        } while (condicion);
+        return decision;
+    }
+    private static int preguntarMismosPersonajes(){
+        var mensaje = new Mensajes();
+        string? buffer;
+        int respMismosPersonajes = 0; 
+        bool condicion;
+        do
+        {
+            mensaje.preguntarMismosPersonajes();
+            mensaje.ingrese();
+            buffer = Console.ReadLine();
+            condicion = (!int.TryParse(buffer,out respMismosPersonajes) || (respMismosPersonajes != 1 && respMismosPersonajes != 0));
+            if (condicion)
+            {
+                mensaje.IngreseUnaOpcionCorrecta();
+            }
+        } while (condicion);
+        return respMismosPersonajes;
+    }
 }

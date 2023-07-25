@@ -19,11 +19,10 @@ class obtenerChiste{
                     using (StreamReader objReader = new StreamReader(strReader))
                     {
                         string responseBody = objReader.ReadToEnd();
-                        obtChiste = JsonSerializer.Deserialize<unChiste>(responseBody);// como es un objeto y no una lista no se pone list
+                        obtChiste = JsonSerializer.Deserialize<unChiste>(responseBody);
                     }
             }
         }
-
         return obtChiste; 
     }
 }
