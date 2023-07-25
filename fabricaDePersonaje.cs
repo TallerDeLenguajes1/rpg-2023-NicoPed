@@ -11,6 +11,7 @@ private string [ , ] nombresHashira = {{"Tomioka","Respiración del Agua"},{"Uzu
         var numeroRandom = random.Next(0,4);
         tipoDePersonaje tipoPersonaje;
         tipoPersonaje = (tipoDePersonaje)numeroRandom;
+        string numeroAsociado = random.Next(0,99).ToString();
 
         switch (tipoPersonaje)
         {
@@ -27,6 +28,7 @@ private string [ , ] nombresHashira = {{"Tomioka","Respiración del Agua"},{"Uzu
                 nuevoPersonaje = crearHashira();
             break;
         }
+        nuevoPersonaje.Nombre = string.Concat(nuevoPersonaje.Nombre," ",numeroAsociado);
         return nuevoPersonaje;
     }
     private Personaje crearDemonio(){

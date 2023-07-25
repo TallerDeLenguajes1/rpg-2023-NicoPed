@@ -1,7 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using Personajes;
-//Sacar todos los comentarios, ver lo del try-catch(si falla la API)
-// Mostrar una opcion para ver pelea o continuar... y mostrar cuartes semis final...
 internal class Program
 {
     private static void Main(string[] args)
@@ -305,12 +303,12 @@ internal class Program
         int auxSaludLuch2 = luchador2.Salud;
         var mensajes = new Mensajes();
         var random = new Random(DateTime.Now.Millisecond);
+        if (verOSaltar == 0)
+        {   
+            mensajes.mostrarSalud(luchador1,luchador2);
+        }
         while (luchador1.Salud >0 && luchador2.Salud >0)
         {
-            if (verOSaltar == 0)
-            {   
-                mensajes.mostrarSalud(luchador1,luchador2);
-            }
             moneda = random.Next(1,3);
             if (moneda == 1)
             {
@@ -329,8 +327,10 @@ internal class Program
             if (verOSaltar == 0)
             {
                 mensajes.mostrarDanio(luchador1,luchador2,golpeP1,golpeP2);
+                mensajes.mostrarSalud(luchador1,luchador2);
                 mensajes.presionaEnter();
             }
+            
         }
         if (luchador1.Salud <= 0 ){
             luchador2.Salud = auxSaludLuch2;
