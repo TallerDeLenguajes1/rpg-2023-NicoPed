@@ -75,8 +75,8 @@ public class Mensajes{
         Console.WriteLine("");
         Console.WriteLine (@"╔════════════════════════════════╗");
         Console.WriteLine (@"║             Salud:             ║");
-        Console.WriteLine (@$"║ {luchador1.Nombre.PadRight(15)}: {luchador1.Salud.ToString().PadRight(14)} ║");
-        Console.WriteLine (@$"║ {luchador2.Nombre.PadRight(15)}: {luchador2.Salud.ToString().PadRight(14)} ║");
+        Console.WriteLine (@$"║ {luchador1.Nombre.PadRight(15)}: {luchador1.Salud.ToString().PadRight(13)} ║");
+        Console.WriteLine (@$"║ {luchador2.Nombre.PadRight(15)}: {luchador2.Salud.ToString().PadRight(13)} ║");
         Console.WriteLine (@"║                                ║");
         Console.WriteLine (@"╚════════════════════════════════╝");
 
@@ -85,8 +85,8 @@ public class Mensajes{
         Console.WriteLine("");
         Console.WriteLine (@"╔════════════════════════════════╗");
         Console.WriteLine (@"║ Cantidad de daño provocado por ║");
-        Console.WriteLine (@$"║{luchador1.Nombre.PadRight(15)}: {danioLuchador1.ToString().PadRight(14)} ║");
-        Console.WriteLine (@$"║{luchador2.Nombre.PadRight(15)}: {danioLuchador2.ToString().PadRight(14)} ║");
+        Console.WriteLine (@$"║ {luchador1.Nombre.PadRight(15)}: {danioLuchador1.ToString().PadRight(13)} ║");
+        Console.WriteLine (@$"║ {luchador2.Nombre.PadRight(15)}: {danioLuchador2.ToString().PadRight(13)} ║");
         Console.WriteLine (@"║                                ║");
         Console.WriteLine (@"╚════════════════════════════════╝");
 

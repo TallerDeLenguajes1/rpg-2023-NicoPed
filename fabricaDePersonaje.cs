@@ -49,8 +49,8 @@ private string [ , ] nombresHashira = {{"Tomioka","Respiración del Agua"},{"Uzu
         nuevoDemonio.Edad = nuevoDemonio.SacarEdad();
         nuevoDemonio.Velocidad = random.Next(3,7);
         nuevoDemonio.Destreza = random.Next(1,3);
-        nuevoDemonio.Fuerza = random.Next(2,7);
-        nuevoDemonio.Poder = random.Next(3,6);
+        nuevoDemonio.Fuerza = random.Next(3,6);
+        nuevoDemonio.Poder = random.Next(4,6);
         nuevoDemonio.Defensa = random.Next(2,7);
         nuevoDemonio.Salud = 100;
         return nuevoDemonio;
@@ -75,9 +75,9 @@ private string [ , ] nombresHashira = {{"Tomioka","Respiración del Agua"},{"Uzu
         nuevoCazador.Edad = nuevoCazador.SacarEdad();
         nuevoCazador.Velocidad = random.Next(4,7);
         nuevoCazador.Destreza = random.Next(1,3);
-        nuevoCazador.Fuerza = random.Next(3,7);
-        nuevoCazador.Poder = random.Next(3,6);
-        nuevoCazador.Defensa = random.Next(4,6);
+        nuevoCazador.Fuerza = random.Next(2,7);
+        nuevoCazador.Poder = random.Next(2,6);
+        nuevoCazador.Defensa = random.Next(3,6);
         nuevoCazador.Salud = 100;
         return nuevoCazador;
     }
@@ -102,8 +102,8 @@ private string [ , ] nombresHashira = {{"Tomioka","Respiración del Agua"},{"Uzu
         nuevoHashira.Velocidad = random.Next(4,7);
         nuevoHashira.Destreza = random.Next(3,5);
         nuevoHashira.Fuerza = random.Next(4,7);
-        nuevoHashira.Poder = random.Next(3,8);
-        nuevoHashira.Defensa = random.Next(4,7);
+        nuevoHashira.Poder = random.Next(3,7);
+        nuevoHashira.Defensa = random.Next(4,6);
         nuevoHashira.Salud = 100;
         return nuevoHashira;
     }
@@ -125,11 +125,11 @@ private string [ , ] nombresHashira = {{"Tomioka","Respiración del Agua"},{"Uzu
             nuevoCreciente.Fecha_nac = new DateTime(1000,12,5);
         }
         nuevoCreciente.Edad = nuevoCreciente.SacarEdad();
-        nuevoCreciente.Velocidad = random.Next(3,8);
-        nuevoCreciente.Destreza = random.Next(3,6);
-        nuevoCreciente.Fuerza = random.Next(3,8);
+        nuevoCreciente.Velocidad = random.Next(2,8);
+        nuevoCreciente.Destreza = random.Next(1,4);
+        nuevoCreciente.Fuerza = random.Next(2,8);
         nuevoCreciente.Poder = random.Next(3,8);
-        nuevoCreciente.Defensa = random.Next(3,8);
+        nuevoCreciente.Defensa = random.Next(2,8);
         nuevoCreciente.Salud = 100;
         return nuevoCreciente;
     }

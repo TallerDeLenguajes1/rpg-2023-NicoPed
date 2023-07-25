@@ -235,10 +235,27 @@ internal class Program
         var random = new Random(DateTime.Now.Microsecond);
         var mensaje = new Mensajes();
         int beneficio = 0;
-        while (listaDePersonajes.Count > 1)
+        int cantidadDePersonajes = listaDePersonajes.Count;
+        while (cantidadDePersonajes > 1)
         {
-            for (int i = 0; i < listaDePersonajes.Count; i+=2)
+            switch (cantidadDePersonajes)
             {
+                
+                case 16:
+                    mensaje.Octavos();
+                break;
+                case 8:
+                    mensaje.Cuartos();
+                break;
+                case 4:
+                    mensaje.Semis();
+                break;
+                case 2:
+                    mensaje.Final();
+                break;
+            }
+            for (int i = 0; i < listaDePersonajes.Count; i+=2)
+            {                
                 mensaje.VS(listaDePersonajes[i],listaDePersonajes[i+1]);
                 if (listaDePersonajes[i] == personajePrincipal || listaDePersonajes[i+1] == personajePrincipal) // despues se cambiara por si es personaje Principal
                 {
@@ -276,6 +293,7 @@ internal class Program
             listaDePersonajes.Clear();
             listaDePersonajes.AddRange(listaGanadores);
             listaGanadores.Clear();
+            cantidadDePersonajes = listaDePersonajes.Count;
         }
         return listaDePersonajes[0]; 
     }
@@ -289,7 +307,7 @@ internal class Program
         var random = new Random(DateTime.Now.Millisecond);
         while (luchador1.Salud >0 && luchador2.Salud >0)
         {
-            if (verOSaltar == 1)
+            if (verOSaltar == 0)
             {   
                 mensajes.mostrarSalud(luchador1,luchador2);
             }
@@ -308,7 +326,7 @@ internal class Program
             {
                 luchador1.Salud -= golpeP2;
             }
-            if (verOSaltar == 1)
+            if (verOSaltar == 0)
             {
                 mensajes.mostrarDanio(luchador1,luchador2,golpeP1,golpeP2);
                 mensajes.presionaEnter();
@@ -376,7 +394,6 @@ internal class Program
             return PersonajePrincipal;
         }
     }
-    //Tenes que pasar los dos jugadores!!!!! la defensa es del otro luchador...
     private static int calcularGolpe(Personaje luchadorQueGolpea, Personaje luchadorQueDefiende,int fuerzaExtra){
         var random = new Random(DateTime.Now.Millisecond);
         int danioProvocado = 0;
