@@ -102,14 +102,14 @@ private string [ , ] nombresHashira = {{"Tomioka","Respiración del Agua"},{"Uzu
         }
         nuevoHashira.Edad = nuevoHashira.SacarEdad();
         nuevoHashira.Velocidad = random.Next(4,7);
-        nuevoHashira.Destreza = random.Next(3,5);
+        nuevoHashira.Destreza = random.Next(1,4);
         nuevoHashira.Fuerza = random.Next(4,7);
-        nuevoHashira.Poder = random.Next(3,7);
+        nuevoHashira.Poder = random.Next(2,7);
         nuevoHashira.Defensa = random.Next(4,6);
         nuevoHashira.Salud = 100;
         return nuevoHashira;
     }
-        private Personaje crearCreciente(){
+    private Personaje crearCreciente(){
         var nuevoCreciente = new Personaje();
         var random = new Random(DateTime.Now.Millisecond);
         var numeroRandom = random.Next(0,5);
@@ -165,21 +165,3 @@ private string [ , ] nombresHashira = {{"Tomioka","Respiración del Agua"},{"Uzu
 
     }
 }
-// 
-// switch (numeroRandom)
-// {
-    // case 0:
-        // tipoPersonaje = tipoDePersonaje.demonio;
-        // break;
-    // case 1:
-        // tipoPersonaje = tipoDePersonaje.creciente;
-    //    break;
-    // case 2:
-        // tipoPersonaje = tipoDePersonaje.cazador;
-    //    break;
-    // case 3:
-        // tipoPersonaje = tipoDePersonaje.hashira;
-    //    break;
-    // default: Console.WriteLine("Error");
-    //  break;
-//}

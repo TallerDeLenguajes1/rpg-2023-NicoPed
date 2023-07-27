@@ -4,7 +4,7 @@ public class Mensajes{
     public void VS(Personaje luchador1, Personaje luchador2){
         Console.WriteLine (@"╔═══════════════════════════════╗");
         Console.WriteLine (@"║                               ║");
-        Console.WriteLine (@$"║   {luchador1.Nombre.PadLeft(10)} VS {luchador2.Nombre.PadRight(14)}║");
+        Console.WriteLine (@$"║ {luchador1.Nombre.PadLeft(12)} VS {luchador2.Nombre.PadRight(14)}║");
         Console.WriteLine (@"║                               ║");
         Console.WriteLine (@"╚═══════════════════════════════╝");
         

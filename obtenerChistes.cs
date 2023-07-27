@@ -11,6 +11,7 @@ class obtenerChiste{
         request.ContentType = "application/json";
         request.Accept = "application/json";
         unChiste obtChiste = null;
+        try{
         using (WebResponse response = request.GetResponse())
         {
             using (Stream strReader = response.GetResponseStream())
@@ -22,6 +23,10 @@ class obtenerChiste{
                         obtChiste = JsonSerializer.Deserialize<unChiste>(responseBody);
                     }
             }
+        }
+        }
+        catch(WebException ex){
+            Console.WriteLine("Problemas con la API");
         }
         return obtChiste; 
     }

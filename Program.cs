@@ -1,11 +1,10 @@
-﻿// See https://aka.ms/new-console-template for more information
-using Personajes;
+﻿using Personajes;
 internal class Program
 {
     private static void Main(string[] args)
     {
         var mensaje = new Mensajes();
-        int CANTIDAD_DE_PERSONAJES = 1; 
+        int CANTIDAD_DE_PERSONAJES = 1;
         string archivoJson = "personajes.json";
         int opcionFinal = 0;
         string? buffer;
@@ -45,7 +44,7 @@ internal class Program
             if (ganador == personajePrincipal)
             {
                 mensaje.finalUsuarioGanador();
-            } 
+            }
             mensaje.gameOver();
         }
 
@@ -85,13 +84,13 @@ internal class Program
     {
         case 1:
         return 3; // 3 ya que el personaje principal despues se añade llegando a los 4 personajes
-        case 2: 
+        case 2:
             return 7;
-        case 3: 
+        case 3:
             return 15;
         default:
         return 1;
-    }   
+    }
 }
     private static Personaje ingresoUsuario(){
         var usuario = new Personaje ();
@@ -108,13 +107,13 @@ internal class Program
             mensaje.ingreseNombre();
             mensaje.ingrese();
             nombre = Console.ReadLine();
-        } while ( string.IsNullOrEmpty(nombre) || nombre.Length >10 || nombre.Any(c => !char.IsLetterOrDigit(c)) ); // nombre.any se fija si en todo el arreglo todos son caracteres
+        } while ( string.IsNullOrEmpty(nombre) || nombre.Length >10 || nombre.Any(c => !char.IsLetterOrDigit(c)) ); 
         do
         {
             mensaje.ingreseApodo();
             mensaje.ingrese();
             apodo = Console.ReadLine();
-        } while ( string.IsNullOrEmpty(apodo) || apodo.Length >30 || apodo.Any(c => !char.IsLetterOrDigit(c) && !char.IsWhiteSpace(c)) ); // apodo.any se fija si en todo el arreglo todos son caracteres
+        } while ( string.IsNullOrEmpty(apodo) || apodo.Length >30 || apodo.Any(c => !char.IsLetterOrDigit(c) && !char.IsWhiteSpace(c)) ); 
          do
         {
             stringFechaDeNac = "";
@@ -128,8 +127,8 @@ internal class Program
             mensaje.ingreseAnio();
             bufferfechaDeNac = Console.ReadLine();
             stringFechaDeNac = string.Concat(stringFechaDeNac,"/",bufferfechaDeNac);
-        } while (!DateTime.TryParse(stringFechaDeNac, out fecha_nac) || fecha_nac > DateTime.Today); // nombre.any se fija si en todo el arreglo todos son caracteres
-       
+        } while (!DateTime.TryParse(stringFechaDeNac, out fecha_nac) || fecha_nac > DateTime.Today); 
+
         string? buffer;
             mensaje.CrearOGenerarPersonaje();
         do
@@ -170,34 +169,34 @@ internal class Program
                     mensaje.errorAlIngresarLasCaracteristicas();
                 }
                 suma = 0;
-                mensaje.ingresarCaracteristicas();                
+                mensaje.ingresarCaracteristicas();
                 do
                 {
                     mensaje.ingresarDestreza(puntos,suma);
                     mensaje.ingrese();
                     buffer = Console.ReadLine();
                 } while ( !int.TryParse(buffer,out destreza) || destreza > 5);
-                    suma += destreza; 
+                    suma += destreza;
                 do
                 {
-                    mensaje.ingresarVelocidad(puntos,suma); 
+                    mensaje.ingresarVelocidad(puntos,suma);
                     mensaje.ingrese();
                     buffer = Console.ReadLine();
                 } while ( !int.TryParse(buffer,out velocidad) || velocidad > 10);
                     suma += velocidad;
                 do
                 {
-                    mensaje.ingresarDefensa(puntos,suma); 
+                    mensaje.ingresarDefensa(puntos,suma);
                     mensaje.ingrese();
                     buffer = Console.ReadLine();
                 } while ( !int.TryParse(buffer,out defensa) || defensa > 10);
                     suma += defensa;
                 if (suma <= puntos)
-                {    
+                {
                     do
                     {
-                        mensaje.ingresarPoder(puntos,suma); 
-                        mensaje.ingrese();                         
+                        mensaje.ingresarPoder(puntos,suma);
+                        mensaje.ingrese();
                         buffer = Console.ReadLine();
                     } while ( !int.TryParse(buffer,out poder) || poder > 10);
                         suma += poder;
@@ -205,7 +204,7 @@ internal class Program
                     {
                         do
                         {
-                            mensaje.ingresarFuerza(puntos,suma); 
+                            mensaje.ingresarFuerza(puntos,suma);
                             mensaje.ingrese();
                             buffer = Console.ReadLine();
                         } while ( !int.TryParse(buffer,out fuerza) || fuerza > 10);
@@ -213,7 +212,7 @@ internal class Program
                     }
                 }
             } while (suma > puntos);
-             
+
             usuario.Nombre = nombre;
             usuario.Apodo = apodo;
             usuario.Fecha_nac = fecha_nac;
@@ -238,7 +237,7 @@ internal class Program
         {
             switch (cantidadDePersonajes)
             {
-                
+
                 case 16:
                     mensaje.Octavos();
                 break;
@@ -253,9 +252,9 @@ internal class Program
                 break;
             }
             for (int i = 0; i < listaDePersonajes.Count; i+=2)
-            {                
+            {
                 mensaje.VS(listaDePersonajes[i],listaDePersonajes[i+1]);
-                if (listaDePersonajes[i] == personajePrincipal || listaDePersonajes[i+1] == personajePrincipal) // despues se cambiara por si es personaje Principal
+                if (listaDePersonajes[i] == personajePrincipal || listaDePersonajes[i+1] == personajePrincipal) 
                 {
                     mensaje.reglasDelMinijuegoSuerte();
                     if (listaDePersonajes[i] == personajePrincipal)
@@ -269,10 +268,10 @@ internal class Program
                     {
                         beneficio = 0;
                         beneficio = preguntarBeneficio();
-                        ganador = recibirBeneficio(ganador,beneficio);           
+                        ganador = recibirBeneficio(ganador,beneficio);
                     }else
                     {
-                        ganador = recibirBeneficio(ganador,random.Next(1,6)); 
+                        ganador = recibirBeneficio(ganador,random.Next(1,6));
                         mensaje.ganador(ganador);
                         mensaje.presionaEnter();
                     }
@@ -285,7 +284,6 @@ internal class Program
                     mensaje.ganador(ganador);
                     mensaje.presionaEnter();
                 }
-                // si logras entender como borrar en una misma lista sin romperla queda mejor
                 listaGanadores.Add(ganador);
             }
             listaDePersonajes.Clear();
@@ -293,7 +291,7 @@ internal class Program
             listaGanadores.Clear();
             cantidadDePersonajes = listaDePersonajes.Count;
         }
-        return listaDePersonajes[0]; 
+        return listaDePersonajes[0];
     }
     private static Personaje combateSimulado(Personaje luchador1, Personaje luchador2, int verOSaltar){
         int golpeP1;
@@ -304,7 +302,7 @@ internal class Program
         var mensajes = new Mensajes();
         var random = new Random(DateTime.Now.Millisecond);
         if (verOSaltar == 0)
-        {   
+        {
             mensajes.mostrarSalud(luchador1,luchador2);
         }
         while (luchador1.Salud >0 && luchador2.Salud >0)
@@ -317,7 +315,7 @@ internal class Program
             }else
             {
                 golpeP1 = calcularGolpe(luchador1,luchador2,0);
-                golpeP2 = calcularGolpe(luchador2,luchador1,5);              
+                golpeP2 = calcularGolpe(luchador2,luchador1,5);
             }
             luchador2.Salud -= golpeP1;
             if (luchador2.Salud > 0)
@@ -330,7 +328,7 @@ internal class Program
                 mensajes.mostrarSalud(luchador1,luchador2);
                 mensajes.presionaEnter();
             }
-            
+
         }
         if (luchador1.Salud <= 0 ){
             luchador2.Salud = auxSaludLuch2;
@@ -350,7 +348,7 @@ internal class Program
         int golpePersonajePrincipal = 0;
         int golpeContrincante = 0;
         int Resultado;
-  
+
         while (PersonajePrincipal.Salud >0 && Contrincante.Salud >0)
         {
             golpePersonajePrincipal = 0;
@@ -361,9 +359,9 @@ internal class Program
             {
                 mensaje.Empate();
                 golpePersonajePrincipal = calcularGolpe(PersonajePrincipal,Contrincante,0);
-                golpeContrincante = calcularGolpe(Contrincante,PersonajePrincipal,0); 
+                golpeContrincante = calcularGolpe(Contrincante,PersonajePrincipal,0);
             }else
-            {    
+            {
                 if (Resultado == 1)
                 {
                     mensaje.tuGanas();
@@ -373,7 +371,7 @@ internal class Program
                 {
                     mensaje.tuPierdes();
                     golpePersonajePrincipal = calcularGolpe(PersonajePrincipal,Contrincante,0);
-                    golpeContrincante = calcularGolpe(Contrincante,PersonajePrincipal,5);              
+                    golpeContrincante = calcularGolpe(Contrincante,PersonajePrincipal,5);
                 }
             }
             mensaje.presionaEnter();
@@ -399,11 +397,11 @@ internal class Program
         int danioProvocado = 0;
         int Ataque = luchadorQueGolpea.Destreza * (luchadorQueGolpea.Fuerza + fuerzaExtra) * luchadorQueGolpea.Poder;
         int Efectividad = random.Next(0,101);
-        int Defensa = luchadorQueDefiende.Defensa * luchadorQueDefiende.Velocidad;  
-        int ConstanteDeAjuste = 500; 
+        int Defensa = luchadorQueDefiende.Defensa * luchadorQueDefiende.Velocidad;
+        int ConstanteDeAjuste = 500;
         danioProvocado = ((Ataque * Efectividad)- Defensa)/ConstanteDeAjuste;
         return danioProvocado;
-    } 
+    }
     private static int elMasCercano(){
         var random = new Random(DateTime.Now.Millisecond);
         int numeroContrincante;
@@ -427,7 +425,7 @@ internal class Program
         mensaje.suerte(numeroIngresado,numeroDelMago,numeroContrincante);
         if (distanciaEntreNumeros(numeroDelMago, numeroContrincante) ==  distanciaEntreNumeros(numeroDelMago,numeroIngresado))
         {
-            return 3;           
+            return 3;
         }else
         {
             if (distanciaEntreNumeros(numeroDelMago, numeroContrincante) <  distanciaEntreNumeros(numeroDelMago,numeroIngresado))
@@ -495,7 +493,7 @@ internal class Program
     private static int preguntarVerOSaltarPelea(){
         var mensaje = new Mensajes();
         string? buffer;
-        int decision = 0; 
+        int decision = 0;
         bool condicion;
         do
         {
@@ -513,7 +511,7 @@ internal class Program
     private static int preguntarMismosPersonajes(){
         var mensaje = new Mensajes();
         string? buffer;
-        int respMismosPersonajes = 0; 
+        int respMismosPersonajes = 0;
         bool condicion;
         do
         {
